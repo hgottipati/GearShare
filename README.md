@@ -50,6 +50,22 @@ After creating your first user account, you'll need to manually set yourself as 
 - **Messaging**: In-app messaging between buyers and sellers
 - **Admin Panel**: Approve users, manage listings, and post announcements
 
+## Deployment
+
+### Deploy to Vercel
+
+The easiest way to deploy GearShare is using [Vercel](https://vercel.com):
+
+1. Push your code to GitHub/GitLab/Bitbucket
+2. Import your repository in Vercel
+3. Add environment variables:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `NEXT_PUBLIC_APP_URL` (optional, for email notifications)
+4. Deploy!
+
+See [docs/VERCEL_DEPLOYMENT.md](./docs/VERCEL_DEPLOYMENT.md) for detailed deployment instructions.
+
 ## Tech Stack
 
 - Next.js 14 (App Router)

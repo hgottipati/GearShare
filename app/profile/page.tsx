@@ -162,7 +162,7 @@ export default function ProfilePage() {
 
         {!profile.is_approved && (
           <div className="mb-6 p-4 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded">
-            Your account is pending approval. You'll be able to create listings once
+            Your account is pending approval. You&apos;ll be able to create listings once
             approved.
           </div>
         )}
@@ -242,7 +242,7 @@ export default function ProfilePage() {
             {activeTab === 'listings' ? (
               <div>
                 {listings.length === 0 ? (
-                  <p className="text-gray-600">You haven't created any listings yet.</p>
+                  <p className="text-gray-600">You haven&apos;t created any listings yet.</p>
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {listings.map((listing) => (

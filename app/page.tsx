@@ -56,7 +56,7 @@ export default async function Home() {
           </div>
           <h1 className="text-3xl font-bold mb-4 text-gray-900">Account Pending Approval</h1>
           <p className="text-gray-600">
-            Your account is waiting for admin approval. You'll be able to access
+            Your account is waiting for admin approval. You&apos;ll be able to access
             the marketplace once approved.
           </p>
         </div>

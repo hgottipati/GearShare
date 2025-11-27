@@ -47,8 +47,8 @@ npm install
 4. Add the following:
 
 ```
-NEXT_PUBLIC_SUPABASE_URL=https://ikndivkmwyvikctcpmjl.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlrbmRpdmttd3l2aWtjdGNwbWpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQyMTQ4MTQsImV4cCI6MjA3OTc5MDgxNH0.XYtQM34nG15leLsxR_MHb0E5ZqM4N-ygwPz0iSstuZA
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
 ```
 
 Replace `your_project_url_here` and `your_anon_key_here` with the values you copied.
