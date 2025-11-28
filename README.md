@@ -42,6 +42,8 @@ After creating your first user account, you'll need to manually set yourself as 
 2. Find your user record
 3. Set `is_admin` to `true` and `is_approved` to `true`
 
+See [docs/FIRST_ADMIN_SETUP.md](./docs/FIRST_ADMIN_SETUP.md) for detailed instructions.
+
 ## Features
 
 - **Private Access**: Email-based authentication with admin approval

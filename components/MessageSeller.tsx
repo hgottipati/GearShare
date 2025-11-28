@@ -78,22 +78,29 @@ export default function MessageSeller({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-2">
-      <textarea
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Type your message here..."
-        rows={4}
-        required
-        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-      <button
-        type="submit"
-        disabled={loading || !message.trim()}
-        className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
-      >
-        {loading ? 'Sending...' : 'Send Message'}
-      </button>
+    <form onSubmit={handleSubmit} className="space-y-3">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Your Message
+        </label>
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Type your message here..."
+          rows={4}
+          required
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+        />
+      </div>
+      <div className="flex gap-3">
+        <button
+          type="submit"
+          disabled={loading || !message.trim()}
+          className="px-6 py-2.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+        >
+          {loading ? 'Sending...' : 'Send Message'}
+        </button>
+      </div>
     </form>
   )
 }
