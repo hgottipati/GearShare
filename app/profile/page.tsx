@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase-client'
 import { useAuth } from '@/app/providers'
 import Navbar from '@/components/Navbar'
@@ -43,6 +43,7 @@ interface Message {
 export default function ProfilePage() {
   const { user } = useAuth()
   const router = useRouter()
+  const searchParams = useSearchParams()
   const supabase = createClient()
   const [profile, setProfile] = useState<Profile | null>(null)
   const [listings, setListings] = useState<Listing[]>([])
@@ -58,6 +59,14 @@ export default function ProfilePage() {
       router.push('/login')
     }
   }, [user])
+
+  useEffect(() => {
+    // Check if tab parameter is set in URL
+    const tab = searchParams?.get('tab')
+    if (tab === 'messages') {
+      setActiveTab('messages')
+    }
+  }, [searchParams])
 
   const loadData = async () => {
     if (!user) return
@@ -184,6 +193,39 @@ export default function ProfilePage() {
     setMessages(allMessages)
     setLoading(false)
   }
+
+  useEffect(() => {
+    if (!user) return
+
+    // Set up real-time subscription for new messages
+    const channel = supabase
+      .channel('profile-messages')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'messages',
+          filter: `receiver_id=eq.${user.id}`,
+        },
+        (payload) => {
+          // Reload messages when new ones arrive
+          loadData()
+          // Show notification for new messages
+          if (payload.eventType === 'INSERT') {
+            toast.success('You have a new message!', {
+              icon: '💬',
+              duration: 4000,
+            })
+          }
+        }
+      )
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [user, supabase])
 
   const updateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

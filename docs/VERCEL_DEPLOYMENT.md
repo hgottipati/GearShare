@@ -65,12 +65,46 @@ In the Vercel project settings, add these environment variables:
 - [ ] Test creating and viewing listings
 - [ ] Update `NEXT_PUBLIC_APP_URL` if you're using email notifications
 
-## Custom Domain (Optional)
+## Changing Your Vercel Domain
+
+### Option 1: Rename Project (Recommended)
+
+To change the default Vercel domain (e.g., from `gearshare-nine.vercel.app` to `gearshare.vercel.app`):
+
+1. Go to your Vercel project dashboard
+2. Click on **Settings** → **General**
+3. Scroll down to **Project Name**
+4. Change the project name to your desired name (e.g., `gearshare`)
+5. Click **Save**
+6. Your new domain will be `https://your-new-name.vercel.app`
+7. **Important**: Update the `NEXT_PUBLIC_APP_URL` environment variable to match your new domain
+8. Update Supabase redirect URLs (see below)
+
+### Option 2: Add Custom Domain
 
 1. Go to **Settings** → **Domains**
-2. Add your custom domain
+2. Add your custom domain (e.g., `gearshare.com`)
 3. Follow Vercel's DNS configuration instructions
 4. SSL certificates are automatically provisioned
+5. Update `NEXT_PUBLIC_APP_URL` environment variable
+6. Update Supabase redirect URLs
+
+### After Changing Domain
+
+**Update Environment Variables:**
+1. Go to **Settings** → **Environment Variables**
+2. Update `NEXT_PUBLIC_APP_URL` to your new domain:
+   - `https://your-new-name.vercel.app` (if renamed)
+   - `https://your-custom-domain.com` (if using custom domain)
+
+**Update Supabase Redirect URLs:**
+1. Go to your Supabase project dashboard
+2. Navigate to **Authentication** → **URL Configuration**
+3. Update **Redirect URLs** to include your new domain:
+   - `https://your-new-name.vercel.app/**`
+   - `https://your-new-name.vercel.app/auth/callback`
+4. Update **Site URL** to your new domain
+5. Click **Save**
 
 ## Environment-Specific Deployments
 

@@ -6,7 +6,7 @@ import { useAuth } from '@/app/providers'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase-client'
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, MessageSquare } from 'lucide-react'
 
 export default function Navbar() {
   const { user, signOut } = useAuth()
@@ -14,6 +14,7 @@ export default function Navbar() {
   const supabase = createClient()
   const [isAdmin, setIsAdmin] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [unreadCount, setUnreadCount] = useState(0)
 
   useEffect(() => {
     if (user) {
@@ -25,6 +26,45 @@ export default function Navbar() {
         .then(({ data }: { data: { is_admin: boolean } | null }) => {
           if (data) setIsAdmin(data.is_admin)
         })
+
+      // Load unread message count
+      supabase
+        .from('messages')
+        .select('id', { count: 'exact', head: true })
+        .eq('receiver_id', user.id)
+        .eq('read', false)
+        .then(({ count }: { count: number | null }) => {
+          setUnreadCount(count || 0)
+        })
+
+      // Set up real-time subscription for new messages
+      const channel = supabase
+        .channel('messages')
+        .on(
+          'postgres_changes',
+          {
+            event: '*',
+            schema: 'public',
+            table: 'messages',
+            filter: `receiver_id=eq.${user.id}`,
+          },
+          () => {
+            // Refresh count when messages change
+            supabase
+              .from('messages')
+              .select('id', { count: 'exact', head: true })
+              .eq('receiver_id', user.id)
+              .eq('read', false)
+              .then(({ count }: { count: number | null }) => {
+                setUnreadCount(count || 0)
+              })
+          }
+        )
+        .subscribe()
+
+      return () => {
+        supabase.removeChannel(channel)
+      }
     }
   }, [user, supabase])
 
@@ -58,20 +98,32 @@ export default function Navbar() {
             <div className="hidden md:flex items-center space-x-4">
               <Link
                 href="/listings/create"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
+                className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
               >
                 Create Listing
               </Link>
               <Link
+                href="/profile?tab=messages"
+                className="relative text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2"
+              >
+                <MessageSquare size={18} />
+                Messages
+                {unreadCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {unreadCount > 9 ? '9+' : unreadCount}
+                  </span>
+                )}
+              </Link>
+              <Link
                 href="/profile"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
+                className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
               >
                 Profile
               </Link>
               {isAdmin && (
                 <Link
                   href="/admin"
-                  className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   Admin
                 </Link>
@@ -109,6 +161,19 @@ export default function Navbar() {
                 className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md text-sm font-medium"
               >
                 Create Listing
+              </Link>
+              <Link
+                href="/profile?tab=messages"
+                onClick={() => setMobileMenuOpen(false)}
+                className="relative block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md text-sm font-medium flex items-center gap-2"
+              >
+                <MessageSquare size={18} />
+                Messages
+                {unreadCount > 0 && (
+                  <span className="bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {unreadCount > 9 ? '9+' : unreadCount}
+                  </span>
+                )}
               </Link>
               <Link
                 href="/profile"
