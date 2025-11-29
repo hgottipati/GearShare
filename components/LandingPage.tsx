@@ -12,24 +12,40 @@ import {
   Eye,
   UserCheck,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  UserPlus,
+  Upload,
+  Search,
+  Handshake,
+  RefreshCw
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [featuresVisible, setFeaturesVisible] = useState(false)
+  const [howItWorksVisible, setHowItWorksVisible] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
     
-    // Trigger features animation on scroll
+    // Trigger animations on scroll
     const handleScroll = () => {
+      // Features section
       const featuresSection = document.getElementById('features')
       if (featuresSection) {
         const rect = featuresSection.getBoundingClientRect()
         if (rect.top < window.innerHeight * 0.8) {
           setFeaturesVisible(true)
+        }
+      }
+      
+      // How It Works section
+      const howItWorksSection = document.getElementById('how-it-works')
+      if (howItWorksSection) {
+        const rect = howItWorksSection.getBoundingClientRect()
+        if (rect.top < window.innerHeight * 0.8) {
+          setHowItWorksVisible(true)
         }
       }
     }
@@ -78,7 +94,7 @@ export default function LandingPage() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="#features"
+                href="#how-it-works"
                 className="px-8 py-4 bg-white text-gray-700 rounded-lg font-semibold text-lg border-2 border-gray-300 hover:border-gray-400 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300"
               >
                 See How It Works
@@ -102,6 +118,142 @@ export default function LandingPage() {
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110 animate-fade-in-up" style={{ animationDelay: '700ms' }}>
                 <UserCheck className="w-5 h-5 text-orange-600" />
                 <span className="text-sm font-medium text-gray-700">Private Community</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              How It Works
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Get started in 5 simple steps
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {/* Step 1 */}
+            <div className={`flex flex-col md:flex-row items-center gap-8 transition-all duration-700 ${
+              howItWorksVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+            }`} style={{ transitionDelay: '0ms' }}>
+              <div className="flex-shrink-0">
+                <div className="relative">
+                  <div className="w-24 h-24 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-xl transform hover:scale-110 transition-transform duration-300">
+                    <UserPlus className="w-12 h-12 text-white" />
+                  </div>
+                  <div className="absolute -top-2 -left-2 w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    1
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                  Join the Community
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Create an account using your email. Only approved ski students and parents get access — keeping everything safe, trusted, and local.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className={`flex flex-col md:flex-row-reverse items-center gap-8 transition-all duration-700 ${
+              howItWorksVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+            }`} style={{ transitionDelay: '150ms' }}>
+              <div className="flex-shrink-0">
+                <div className="relative">
+                  <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-xl transform hover:scale-110 transition-transform duration-300">
+                    <Upload className="w-12 h-12 text-white" />
+                  </div>
+                  <div className="absolute -top-2 -left-2 w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    2
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 text-center md:text-right">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                  Post Your Gear
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Got skis or boots your kid outgrew? Upload a photo, add size/condition, set a price or select &quot;open to trade.&quot;
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className={`flex flex-col md:flex-row items-center gap-8 transition-all duration-700 ${
+              howItWorksVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+            }`} style={{ transitionDelay: '300ms' }}>
+              <div className="flex-shrink-0">
+                <div className="relative">
+                  <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl transform hover:scale-110 transition-transform duration-300">
+                    <Search className="w-12 h-12 text-white" />
+                  </div>
+                  <div className="absolute -top-2 -left-2 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    3
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                  Browse What You Need
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Search through gear listed by other ski families — find the right size at the right time without paying full retail.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className={`flex flex-col md:flex-row-reverse items-center gap-8 transition-all duration-700 ${
+              howItWorksVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+            }`} style={{ transitionDelay: '450ms' }}>
+              <div className="flex-shrink-0">
+                <div className="relative">
+                  <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-xl transform hover:scale-110 transition-transform duration-300">
+                    <Handshake className="w-12 h-12 text-white" />
+                  </div>
+                  <div className="absolute -top-2 -left-2 w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    4
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 text-center md:text-right">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                  Connect & Arrange Pickup
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Message the seller directly to coordinate a quick, simple handoff. No shipping, no fees, no hassle.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 5 */}
+            <div className={`flex flex-col md:flex-row items-center gap-8 transition-all duration-700 ${
+              howItWorksVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+            }`} style={{ transitionDelay: '600ms' }}>
+              <div className="flex-shrink-0">
+                <div className="relative">
+                  <div className="w-24 h-24 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-xl transform hover:scale-110 transition-transform duration-300">
+                    <RefreshCw className="w-12 h-12 text-white" />
+                  </div>
+                  <div className="absolute -top-2 -left-2 w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    5
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                  Swap Again Next Season
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Kids grow fast — gear comes and goes. Reuse, share, and save money year after year.
+                </p>
               </div>
             </div>
           </div>
@@ -195,7 +347,7 @@ export default function LandingPage() {
             href="/login?mode=signup"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 rounded-lg font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
           >
-            Join GearShare
+            Join ShareMyGear
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

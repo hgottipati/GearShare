@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import Image from 'next/image'
 import { createClient } from '@/lib/supabase-client'
+import Logo from '@/components/Logo'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -188,15 +188,9 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4">
       <div className="max-w-md w-full bg-white rounded-xl shadow-xl border border-gray-200 p-8">
         <div className="flex flex-col items-center mb-6">
-          <Image
-            src="/logo.png"
-            alt="ShareMyGear"
-            width={150}
-            height={50}
-            className="mb-4 h-auto w-auto"
-            priority
-            unoptimized
-          />
+          <div className="mb-4">
+            <Logo size="lg" showText={true} href={null} />
+          </div>
           <h1 className="text-3xl font-bold text-gray-900">
             {isSignUp ? 'Create Account' : 'Welcome Back'}
           </h1>

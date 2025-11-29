@@ -1,12 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useAuth } from '@/app/providers'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase-client'
 import { useState, useEffect } from 'react'
 import { Menu, X, MessageSquare } from 'lucide-react'
+import Logo from './Logo'
 
 export default function Navbar() {
   const { user, signOut } = useAuth()
@@ -80,20 +80,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-4">
-            <Link
-              href="/marketplace"
-              className="flex items-center hover:opacity-90 transition-opacity"
-            >
-              <Image
-                src="/logo.png"
-                alt="ShareMyGear"
-                width={120}
-                height={40}
-                className="h-12 w-auto"
-                priority
-                unoptimized
-              />
-            </Link>
+            <Logo href="/marketplace" size="md" />
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-4">
               <Link

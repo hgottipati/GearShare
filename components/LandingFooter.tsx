@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { Twitter, Youtube, Linkedin, Mail, Shield, Lock, Eye, UserCheck } from 'lucide-react'
+import Logo from './Logo'
 
 export default function LandingFooter() {
   return (
@@ -11,16 +11,9 @@ export default function LandingFooter() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand Section */}
           <div>
-            <Link href="/" className="flex items-center mb-4">
-              <Image
-                src="/logo.png"
-                alt="ShareMyGear"
-                width={120}
-                height={40}
-                className="h-10 w-auto brightness-0 invert"
-                unoptimized
-              />
-            </Link>
+            <div className="mb-4">
+              <Logo href="/" size="md" variant="dark" />
+            </div>
             <p className="text-sm text-gray-400 mb-4 max-w-xs">
               Private gear marketplace that transforms how you buy, sell, trade, and rent equipment with your community.
             </p>
@@ -45,7 +38,7 @@ export default function LandingFooter() {
             <h3 className="text-white font-semibold mb-4">Product</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#features" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="#how-it-works" className="text-gray-400 hover:text-white transition-colors text-sm">
                   How It Works
                 </Link>
               </li>
@@ -55,14 +48,14 @@ export default function LandingFooter() {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Pricing
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   API
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -72,24 +65,24 @@ export default function LandingFooter() {
             <h3 className="text-white font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Contact
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Careers
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Blog
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

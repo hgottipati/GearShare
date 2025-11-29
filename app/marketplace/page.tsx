@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
-import Image from 'next/image'
 import { createClient } from '@/lib/supabase-server'
 import MarketplaceList from '@/components/MarketplaceList'
+import Logo from '@/components/Logo'
 
 export default async function MarketplacePage() {
   const supabase = await createClient()
@@ -44,15 +44,7 @@ export default async function MarketplacePage() {
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         <div className="max-w-md w-full bg-white rounded-xl shadow-xl border border-gray-200 p-8 text-center">
           <div className="flex justify-center mb-6">
-            <Image
-              src="/logo.png"
-              alt="ShareMyGear"
-              width={150}
-              height={50}
-              className="h-auto w-auto"
-              priority
-              unoptimized
-            />
+            <Logo size="lg" showText={true} href={null} />
           </div>
           <h1 className="text-3xl font-bold mb-4 text-gray-900">Account Pending Approval</h1>
           <p className="text-gray-600">
