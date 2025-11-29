@@ -36,6 +36,12 @@ export default function LandingNavbar() {
               Features
             </Link>
             <Link
+              href="/ski-lessons"
+              className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+            >
+              🎿 Ski Lessons
+            </Link>
+            <Link
               href="/login"
               className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
             >
@@ -69,6 +75,13 @@ export default function LandingNavbar() {
                 className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md font-medium"
               >
                 Features
+              </Link>
+              <Link
+                href="/ski-lessons"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md font-medium"
+              >
+                🎿 Ski Lessons
               </Link>
               <Link
                 href="/login"

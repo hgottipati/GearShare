@@ -48,6 +48,11 @@ export default function LandingFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/ski-lessons" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  🎿 Ski Lessons
+                </Link>
+              </li>
+              <li>
                 <Link href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
                   Pricing
                 </Link>
