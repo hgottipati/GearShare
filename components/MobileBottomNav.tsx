@@ -74,6 +74,9 @@ export default function MobileBottomNav() {
       // Check if we're on profile but not messages tab
       return pathname === path && !(typeof window !== 'undefined' && window.location.search.includes('tab=messages'))
     }
+    if (path === '/marketplace') {
+      return pathname === path || pathname === '/'
+    }
     return pathname === path
   }
   const isMessagesActive = pathname === '/profile' && typeof window !== 'undefined' && window.location.search.includes('tab=messages')
@@ -82,9 +85,9 @@ export default function MobileBottomNav() {
     <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
       <div className="flex justify-around items-center h-16">
         <Link
-          href="/"
+          href="/marketplace"
           className={`flex flex-col items-center justify-center flex-1 h-full ${
-            isActive('/') ? 'text-blue-600' : 'text-gray-600'
+            isActive('/marketplace') ? 'text-blue-600' : 'text-gray-600'
           }`}
         >
           <Home size={20} />
