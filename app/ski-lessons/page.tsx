@@ -124,7 +124,7 @@ export default function SkiLessonsPage() {
                   Thank You for Your Interest! 🎿
                 </h2>
                 <p className="text-gray-600">
-                  Your enrollment form has been submitted successfully. I'll review your
+                  Your enrollment form has been submitted successfully. I&apos;ll review your
                   information and get back to you soon to discuss lesson options and scheduling.
                 </p>
               </div>
@@ -158,7 +158,7 @@ export default function SkiLessonsPage() {
                 Snoqualmie focused on fun, safety, and steady progression.
               </p>
               <p className="text-gray-700 mb-3">
-                I'm a passionate skier and local instructor-in-training with 3 years of
+                I&apos;m a passionate skier and local instructor-in-training with 3 years of
                 hands-on experience teaching beginners through small-group and family lessons.
                 My approach focuses on:
               </p>
@@ -168,7 +168,7 @@ export default function SkiLessonsPage() {
                 <li>Helping parents see visible progress each week</li>
               </ul>
               <p className="text-gray-700">
-                This form helps me match your child's age, comfort level, and availability to
+                This form helps me match your child&apos;s age, comfort level, and availability to
                 the right session.
               </p>
             </div>
@@ -259,7 +259,7 @@ export default function SkiLessonsPage() {
                   htmlFor="participant_name"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  ⛷️ Participant's Name <span className="text-red-500">*</span>
+                  ⛷️ Participant&apos;s Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -475,7 +475,7 @@ export default function SkiLessonsPage() {
                 <p className="text-sm text-gray-600 mb-3">
                   All participants must have ski gear ready (skis, boots, helmet, gloves, goggles
                   and warm clothing) before the first class. If you need help finding rentals or
-                  purchasing gear, I'm happy to assist. Please confirm below:
+                  purchasing gear, I&apos;m happy to assist. Please confirm below:
                 </p>
                 <div className="space-y-2">
                   <label className="flex items-center">
