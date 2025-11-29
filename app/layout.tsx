@@ -7,8 +7,11 @@ export const metadata: Metadata = {
   title: 'ShareMyGear - Private Marketplace',
   description: 'Private marketplace for gear trading',
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: '/favicon.svg',
   },
 }
 
