@@ -90,7 +90,7 @@ export default function Navbar() {
                 Create Listing
               </Link>
               <Link
-                href="/profile?tab=messages"
+                href="/messages"
                 className="relative text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2"
               >
                 <MessageSquare size={18} />
@@ -150,7 +150,7 @@ export default function Navbar() {
                 Create Listing
               </Link>
               <Link
-                href="/profile?tab=messages"
+                href="/messages"
                 onClick={() => setMobileMenuOpen(false)}
                 className="relative block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md text-sm font-medium flex items-center gap-2"
               >

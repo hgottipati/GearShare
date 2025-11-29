@@ -27,21 +27,43 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const supabase = createClient()
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }: { data: { session: Session | null } }) => {
-      setUser(session?.user ?? null)
-      setLoading(false)
-    })
+    let mounted = true
+
+    // Get initial session with retry logic
+    const initializeSession = async () => {
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession()
+        if (mounted) {
+          if (error) {
+            console.error('Session error:', error)
+          }
+          setUser(session?.user ?? null)
+          setLoading(false)
+        }
+      } catch (error) {
+        console.error('Failed to get session:', error)
+        if (mounted) {
+          setLoading(false)
+        }
+      }
+    }
+
+    initializeSession()
 
     // Listen for auth changes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event: AuthChangeEvent, session: Session | null) => {
-      setUser(session?.user ?? null)
-      setLoading(false)
+      if (mounted) {
+        setUser(session?.user ?? null)
+        setLoading(false)
+      }
     })
 
-    return () => subscription.unsubscribe()
+    return () => {
+      mounted = false
+      subscription.unsubscribe()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

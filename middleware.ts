@@ -55,7 +55,8 @@ export async function middleware(request: NextRequest) {
   // Protect other authenticated routes
   if (
     request.nextUrl.pathname.startsWith('/listings/create') ||
-    request.nextUrl.pathname.startsWith('/profile')
+    request.nextUrl.pathname.startsWith('/profile') ||
+    request.nextUrl.pathname.startsWith('/messages')
   ) {
     if (!user) {
       return NextResponse.redirect(new URL('/login', request.url))

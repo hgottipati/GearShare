@@ -70,16 +70,11 @@ export default function MobileBottomNav() {
   if (!user) return null
 
   const isActive = (path: string) => {
-    if (path === '/profile') {
-      // Check if we're on profile but not messages tab
-      return pathname === path && !(typeof window !== 'undefined' && window.location.search.includes('tab=messages'))
-    }
     if (path === '/marketplace') {
       return pathname === path || pathname === '/'
     }
     return pathname === path
   }
-  const isMessagesActive = pathname === '/profile' && typeof window !== 'undefined' && window.location.search.includes('tab=messages')
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
@@ -103,9 +98,9 @@ export default function MobileBottomNav() {
           <span className="text-xs mt-1">Create</span>
         </Link>
         <Link
-          href="/profile?tab=messages"
+          href="/messages"
           className={`relative flex flex-col items-center justify-center flex-1 h-full ${
-            isMessagesActive ? 'text-blue-600' : 'text-gray-600'
+            isActive('/messages') ? 'text-blue-600' : 'text-gray-600'
           }`}
         >
           <MessageSquare size={20} />
@@ -119,7 +114,7 @@ export default function MobileBottomNav() {
         <Link
           href="/profile"
           className={`flex flex-col items-center justify-center flex-1 h-full ${
-            isActive('/profile') && !isMessagesActive ? 'text-blue-600' : 'text-gray-600'
+            isActive('/profile') ? 'text-blue-600' : 'text-gray-600'
           }`}
         >
           <User size={20} />
