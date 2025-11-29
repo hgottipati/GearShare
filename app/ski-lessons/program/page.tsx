@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import LandingNavbar from '@/components/LandingNavbar'
 import LandingFooter from '@/components/LandingFooter'
 import Link from 'next/link'
@@ -91,10 +91,24 @@ const weekPrograms = [
 
 export default function SkiLessonsProgramPage() {
   const [currentWeek, setCurrentWeek] = useState(1)
+  const weekNavigationRef = useRef<HTMLDivElement>(null)
+  const weekDetailsRef = useRef<HTMLDivElement>(null)
 
   const goToWeek = (week: number) => {
     setCurrentWeek(week)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    // Scroll to week navigation section so both buttons and header are visible
+    // Add offset for fixed navbar (64px = h-16)
+    setTimeout(() => {
+      if (weekNavigationRef.current) {
+        const elementPosition = weekNavigationRef.current.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - 80 // 80px offset for navbar + padding
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }
+    }, 100)
   }
 
   const currentProgram = weekPrograms[currentWeek - 1]
@@ -165,7 +179,7 @@ export default function SkiLessonsProgramPage() {
           </div>
 
           {/* Week Navigation */}
-          <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+          <div ref={weekNavigationRef} className="bg-white rounded-lg shadow-lg p-6 mb-8">
             <div className="flex flex-wrap justify-center gap-2">
               {weekPrograms.map((program) => (
                 <button
@@ -184,7 +198,7 @@ export default function SkiLessonsProgramPage() {
           </div>
 
           {/* Current Week Details */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div ref={weekDetailsRef} className="bg-white rounded-lg shadow-lg overflow-hidden">
             <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-6">
               <div className="flex items-center justify-between">
                 <div>
