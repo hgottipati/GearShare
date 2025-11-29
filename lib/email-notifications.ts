@@ -112,7 +112,6 @@ export async function notifySkiLessonSubmission(
     phone_number: string
     ski_level: string
     lesson_type: string
-    preferred_day: string
     questions_preferences: string | null
     gear_status: string
   }
@@ -145,7 +144,6 @@ export async function notifySkiLessonSubmission(
       <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
         <h3 style="margin-top: 0;">Lesson Preferences</h3>
         <p><strong>Lesson Type:</strong> ${lessonTypeLabels[submission.lesson_type] || submission.lesson_type}</p>
-        <p><strong>Preferred Day:</strong> ${submission.preferred_day}</p>
         <p><strong>Gear Status:</strong> ${submission.gear_status === 'need-help' ? 'Needs Help Finding Gear' : 'Gear Ready'}</p>
         ${submission.questions_preferences ? `<p><strong>Questions/Preferences:</strong><br>${submission.questions_preferences}</p>` : ''}
       </div>
@@ -155,7 +153,7 @@ export async function notifySkiLessonSubmission(
         </a>
       </p>
     `,
-    text: `New ski lesson enrollment from ${parentName} for ${participantName} (Age ${submission.age}, ${submission.ski_level} level). Lesson: ${lessonTypeLabels[submission.lesson_type] || submission.lesson_type}, Preferred: ${submission.preferred_day}`,
+    text: `New ski lesson enrollment from ${parentName} for ${participantName} (Age ${submission.age}, ${submission.ski_level} level). Lesson: ${lessonTypeLabels[submission.lesson_type] || submission.lesson_type}`,
   })
 
   // Confirmation email to parent
@@ -172,7 +170,6 @@ export async function notifySkiLessonSubmission(
           <li><strong>Participant:</strong> ${participantName} (Age ${submission.age})</li>
           <li><strong>Ski Level:</strong> ${submission.ski_level}</li>
           <li><strong>Lesson Type:</strong> ${lessonTypeLabels[submission.lesson_type] || submission.lesson_type}</li>
-          <li><strong>Preferred Day:</strong> ${submission.preferred_day}</li>
           <li><strong>Gear Status:</strong> ${submission.gear_status === 'need-help' ? 'Needs Help' : 'Ready'}</li>
         </ul>
       </div>

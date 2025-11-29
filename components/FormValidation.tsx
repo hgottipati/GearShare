@@ -93,7 +93,6 @@ export function validateSkiLessonForm(formData: {
   phone_number: string
   ski_level: string
   lesson_type: string
-  preferred_day: string
   questions_preferences?: string
   gear_status: string
 }): ValidationErrors {
@@ -165,13 +164,6 @@ export function validateSkiLessonForm(formData: {
     )
   ) {
     errors.lesson_type = 'Please select a valid lesson type'
-  }
-
-  // Preferred day validation
-  if (!formData.preferred_day) {
-    errors.preferred_day = 'Preferred day is required'
-  } else if (!['Saturday', 'Sunday', 'Any'].includes(formData.preferred_day)) {
-    errors.preferred_day = 'Please select a valid preferred day'
   }
 
   // Questions/preferences validation (optional)

@@ -22,7 +22,6 @@ export default function SkiLessonsPage() {
     phone_number: '',
     ski_level: '',
     lesson_type: '',
-    preferred_day: '',
     questions_preferences: '',
     gear_status: '',
   })
@@ -57,7 +56,7 @@ export default function SkiLessonsPage() {
             | '4-week-group'
             | 'one-time-private'
             | 'one-time-group',
-          preferred_day: formData.preferred_day as 'Saturday' | 'Sunday' | 'Any',
+          preferred_day: null,
           questions_preferences: formData.questions_preferences.trim() || null,
           gear_status: formData.gear_status as 'ready' | 'need-help',
         })
@@ -85,7 +84,6 @@ export default function SkiLessonsPage() {
         phone_number: '',
         ski_level: '',
         lesson_type: '',
-        preferred_day: '',
         questions_preferences: '',
         gear_status: '',
       })
@@ -381,61 +379,6 @@ export default function SkiLessonsPage() {
                 </select>
                 {validationErrors.lesson_type && (
                   <p className="mt-1 text-sm text-red-600">{validationErrors.lesson_type}</p>
-                )}
-              </div>
-
-              {/* Preferred Day */}
-              <div>
-                <label
-                  htmlFor="preferred_day"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Preferred day for lessons <span className="text-red-500">*</span>
-                </label>
-                <div className="space-y-2">
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="preferred_day"
-                      value="Saturday"
-                      checked={formData.preferred_day === 'Saturday'}
-                      onChange={(e) =>
-                        setFormData({ ...formData, preferred_day: e.target.value })
-                      }
-                      className="mr-2"
-                      required
-                    />
-                    <span>Saturday</span>
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="preferred_day"
-                      value="Sunday"
-                      checked={formData.preferred_day === 'Sunday'}
-                      onChange={(e) =>
-                        setFormData({ ...formData, preferred_day: e.target.value })
-                      }
-                      className="mr-2"
-                    />
-                    <span>Sunday</span>
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="preferred_day"
-                      value="Any"
-                      checked={formData.preferred_day === 'Any'}
-                      onChange={(e) =>
-                        setFormData({ ...formData, preferred_day: e.target.value })
-                      }
-                      className="mr-2"
-                    />
-                    <span>Any</span>
-                  </label>
-                </div>
-                {validationErrors.preferred_day && (
-                  <p className="mt-1 text-sm text-red-600">{validationErrors.preferred_day}</p>
                 )}
               </div>
 

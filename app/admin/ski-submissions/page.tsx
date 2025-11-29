@@ -17,7 +17,7 @@ interface SkiSubmission {
   phone_number: string
   ski_level: 'Beginner' | 'Intermediate' | 'Advanced'
   lesson_type: '4-week-private' | '4-week-group' | 'one-time-private' | 'one-time-group'
-  preferred_day: 'Saturday' | 'Sunday' | 'Any'
+  preferred_day: 'Saturday' | 'Sunday' | 'Any' | null
   questions_preferences: string | null
   gear_status: 'ready' | 'need-help'
   created_at: string
@@ -114,7 +114,6 @@ export default function SkiSubmissionsPage() {
       'Phone',
       'Ski Level',
       'Lesson Type',
-      'Preferred Day',
       'Gear Status',
       'Questions/Preferences',
       'Submitted',
@@ -128,7 +127,6 @@ export default function SkiSubmissionsPage() {
       sub.phone_number,
       sub.ski_level,
       lessonTypeLabels[sub.lesson_type] || sub.lesson_type,
-      sub.preferred_day,
       sub.gear_status === 'need-help' ? 'Needs Help' : 'Ready',
       sub.questions_preferences || '',
       new Date(sub.created_at).toLocaleString(),
@@ -255,9 +253,6 @@ export default function SkiSubmissionsPage() {
                           <p className="text-sm font-medium text-gray-500">Lesson Details</p>
                           <p className="text-gray-900">
                             {lessonTypeLabels[submission.lesson_type] || submission.lesson_type}
-                          </p>
-                          <p className="text-sm text-gray-600">
-                            Preferred: {submission.preferred_day}
                           </p>
                         </div>
                         <div>
