@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase-client'
 import { useAuth } from '@/app/providers'
@@ -51,7 +51,7 @@ interface MessageQueryResult {
   listings: { id: string; title: string }
 }
 
-export default function ProfilePage() {
+function ProfilePageContent() {
   const { user } = useAuth()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -515,6 +515,25 @@ export default function ProfilePage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ProfilePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 pb-16 md:pb-8">
+        <Navbar />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="bg-white rounded-lg shadow p-6 animate-pulse space-y-4">
+            <div className="h-6 bg-gray-300 rounded w-1/3"></div>
+            <div className="h-4 bg-gray-300 rounded w-1/2"></div>
+            <div className="h-4 bg-gray-300 rounded w-1/4"></div>
+          </div>
+        </div>
+      </div>
+    }>
+      <ProfilePageContent />
+    </Suspense>
   )
 }
 
