@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase-client'
 import toast from 'react-hot-toast'
 import { validateSkiLessonForm, type ValidationErrors } from '@/components/FormValidation'
@@ -175,9 +176,17 @@ export default function SkiLessonsPage() {
               <h2 className="text-xl font-semibold mb-4">Lesson Options</h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">
-                    🏔️ 4-Week Progression Program
-                  </h3>
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-semibold text-gray-900">
+                      🏔️ 4-Week Progression Program
+                    </h3>
+                    <Link
+                      href="/ski-lessons/program"
+                      className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                    >
+                      View Program Details →
+                    </Link>
+                  </div>
                   <p className="text-sm text-gray-600 mb-2">
                     A structured 4-week course designed for steady, consistent improvement.
                   </p>
