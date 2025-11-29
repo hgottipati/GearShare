@@ -172,6 +172,53 @@ export interface Database {
           updated_at?: string
         }
       }
+      ski_lesson_submissions: {
+        Row: {
+          id: string
+          email: string
+          parent_name: string
+          participant_name: string
+          age: number
+          phone_number: string
+          ski_level: 'Beginner' | 'Intermediate' | 'Advanced'
+          lesson_type: '4-week-private' | '4-week-group' | 'one-time-private' | 'one-time-group'
+          preferred_day: 'Saturday' | 'Sunday' | 'Any'
+          questions_preferences: string | null
+          gear_status: 'ready' | 'need-help'
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          email: string
+          parent_name: string
+          participant_name: string
+          age: number
+          phone_number: string
+          ski_level: 'Beginner' | 'Intermediate' | 'Advanced'
+          lesson_type: '4-week-private' | '4-week-group' | 'one-time-private' | 'one-time-group'
+          preferred_day: 'Saturday' | 'Sunday' | 'Any'
+          questions_preferences?: string | null
+          gear_status: 'ready' | 'need-help'
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          email?: string
+          parent_name?: string
+          participant_name?: string
+          age?: number
+          phone_number?: string
+          ski_level?: 'Beginner' | 'Intermediate' | 'Advanced'
+          lesson_type?: '4-week-private' | '4-week-group' | 'one-time-private' | 'one-time-group'
+          preferred_day?: 'Saturday' | 'Sunday' | 'Any'
+          questions_preferences?: string | null
+          gear_status?: 'ready' | 'need-help'
+          created_at?: string
+          updated_at?: string
+        }
+      }
     }
   }
 }

@@ -85,3 +85,107 @@ export function validateMessageForm(message: string): ValidationErrors {
   return errors
 }
 
+export function validateSkiLessonForm(formData: {
+  email: string
+  parent_name: string
+  participant_name: string
+  age: string
+  phone_number: string
+  ski_level: string
+  lesson_type: string
+  preferred_day: string
+  questions_preferences?: string
+  gear_status: string
+}): ValidationErrors {
+  const errors: ValidationErrors = {}
+
+  // Email validation
+  if (!formData.email.trim()) {
+    errors.email = 'Email is required'
+  } else {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) {
+      errors.email = 'Please enter a valid email address'
+    }
+  }
+
+  // Parent name validation
+  if (!formData.parent_name.trim()) {
+    errors.parent_name = 'Parent/Guardian name is required'
+  } else if (formData.parent_name.trim().length > 100) {
+    errors.parent_name = 'Name must be less than 100 characters'
+  }
+
+  // Participant name validation
+  if (!formData.participant_name.trim()) {
+    errors.participant_name = "Participant's name is required"
+  } else if (formData.participant_name.trim().length > 100) {
+    errors.participant_name = 'Name must be less than 100 characters'
+  }
+
+  // Age validation
+  if (!formData.age.trim()) {
+    errors.age = 'Age is required'
+  } else {
+    const ageNum = parseInt(formData.age)
+    if (isNaN(ageNum) || ageNum < 1 || ageNum > 100) {
+      errors.age = 'Please enter a valid age (1-100)'
+    } else if (ageNum < 6 || ageNum > 15) {
+      errors.age = 'Age must be between 6 and 15'
+    }
+  }
+
+  // Phone validation
+  if (!formData.phone_number.trim()) {
+    errors.phone_number = 'Phone number is required'
+  } else {
+    const phoneRegex = /^[\d\s\-\+\(\)]+$/
+    if (!phoneRegex.test(formData.phone_number)) {
+      errors.phone_number = 'Please enter a valid phone number'
+    }
+    const digitsOnly = formData.phone_number.replace(/\D/g, '')
+    if (digitsOnly.length < 10) {
+      errors.phone_number = 'Phone number must have at least 10 digits'
+    }
+  }
+
+  // Ski level validation
+  if (!formData.ski_level) {
+    errors.ski_level = 'Ski level is required'
+  } else if (!['Beginner', 'Intermediate', 'Advanced'].includes(formData.ski_level)) {
+    errors.ski_level = 'Please select a valid ski level'
+  }
+
+  // Lesson type validation
+  if (!formData.lesson_type) {
+    errors.lesson_type = 'Lesson type is required'
+  } else if (
+    !['4-week-private', '4-week-group', 'one-time-private', 'one-time-group'].includes(
+      formData.lesson_type
+    )
+  ) {
+    errors.lesson_type = 'Please select a valid lesson type'
+  }
+
+  // Preferred day validation
+  if (!formData.preferred_day) {
+    errors.preferred_day = 'Preferred day is required'
+  } else if (!['Saturday', 'Sunday', 'Any'].includes(formData.preferred_day)) {
+    errors.preferred_day = 'Please select a valid preferred day'
+  }
+
+  // Questions/preferences validation (optional)
+  if (formData.questions_preferences && formData.questions_preferences.length > 1000) {
+    errors.questions_preferences = 'Questions/preferences must be less than 1000 characters'
+  }
+
+  // Gear status validation
+  if (!formData.gear_status) {
+    errors.gear_status = 'Gear status is required'
+  } else if (!['ready', 'need-help'].includes(formData.gear_status)) {
+    errors.gear_status = 'Please select a gear status'
+  }
+
+  return errors
+}
+
