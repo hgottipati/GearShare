@@ -40,6 +40,17 @@ interface Message {
   receiver_profile: { name: string | null; email: string }
 }
 
+interface MessageQueryResult {
+  id: string
+  message: string
+  created_at: string
+  read: boolean
+  sender_id: string
+  receiver_id: string
+  listing_id: string
+  listings: { id: string; title: string }
+}
+
 export default function ProfilePage() {
   const { user } = useAuth()
   const router = useRouter()
@@ -142,8 +153,8 @@ export default function ProfilePage() {
     const senderIds = new Set<string>()
     const receiverIds = new Set<string>()
     
-    receivedMessagesResult.data?.forEach((msg) => senderIds.add(msg.sender_id))
-    sentMessagesResult.data?.forEach((msg) => receiverIds.add(msg.receiver_id))
+    receivedMessagesResult.data?.forEach((msg: MessageQueryResult) => senderIds.add(msg.sender_id))
+    sentMessagesResult.data?.forEach((msg: MessageQueryResult) => receiverIds.add(msg.receiver_id))
 
     // Fetch all needed profiles
     const allProfileIds = Array.from(new Set([...senderIds, ...receiverIds]))
@@ -153,12 +164,12 @@ export default function ProfilePage() {
       .in('id', allProfileIds)
 
     const profilesMap = new Map(
-      (profilesData || []).map((p) => [p.id, { name: p.name, email: p.email }])
+      (profilesData || []).map((p: { id: string; name: string | null; email: string }) => [p.id, { name: p.name, email: p.email }])
     )
 
     // Combine and format messages
     const allMessages: Message[] = [
-      ...(receivedMessagesResult.data || []).map((msg) => {
+      ...(receivedMessagesResult.data || []).map((msg: MessageQueryResult) => {
         const senderProfile = profilesMap.get(msg.sender_id) || { name: null, email: '' }
         return {
           id: msg.id,
@@ -173,7 +184,7 @@ export default function ProfilePage() {
           receiver_profile: { name: profileData?.name || null, email: profileData?.email || '' },
         }
       }),
-      ...(sentMessagesResult.data || []).map((msg) => {
+      ...(sentMessagesResult.data || []).map((msg: MessageQueryResult) => {
         const receiverProfile = profilesMap.get(msg.receiver_id) || { name: null, email: '' }
         return {
           id: msg.id,
@@ -208,7 +219,7 @@ export default function ProfilePage() {
           table: 'messages',
           filter: `receiver_id=eq.${user.id}`,
         },
-        (payload) => {
+        (payload: { eventType: string }) => {
           // Reload messages when new ones arrive
           loadData()
           // Show notification for new messages
