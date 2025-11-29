@@ -1,0 +1,65 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="1000" cy="100" r="150" fill="rgba(59, 130, 246, 0.1)"/>
+  <circle cx="200" cy="500" r="120" fill="rgba(249, 115, 22, 0.1)"/>
+  <circle cx="1100" cy="550" r="100" fill="rgba(139, 92, 246, 0.1)"/>
+  
+  <!-- Main content area -->
+  <g transform="translate(100, 150)">
+    <!-- Logo icon -->
+    <rect x="0" y="0" width="120" height="120" rx="24" fill="url(#logoGradient)"/>
+    <g transform="translate(30, 30)">
+      <!-- Shopping bag -->
+      <path d="M30 36L22.5 90H67.5L60 36H30Z" fill="white" stroke="white" stroke-width="2"/>
+      <path d="M33 27C33 25.3431 34.3431 24 36 24H42C43.6569 24 45 25.3431 45 27V36H33V27Z" fill="white"/>
+      <path d="M51 27C51 25.3431 52.3431 24 54 24H60C61.6569 24 63 25.3431 63 27V36H51V27Z" fill="white"/>
+      <!-- Blue dot -->
+      <circle cx="75" cy="21" r="10.5" fill="#3b82f6" stroke="white" stroke-width="3"/>
+    </g>
+    
+    <!-- Text content -->
+    <g transform="translate(160, 0)">
+      <text x="0" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="bold" fill="#1e293b">
+        <tspan fill="#f97316">ShareMy</tspan><tspan fill="#3b82f6">Gear</tspan>
+      </text>
+      <text x="0" y="110" font-family="system-ui, -apple-system, sans-serif" font-size="32" fill="#475569">
+        Private Ski Gear Marketplace
+      </text>
+      <text x="0" y="160" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#64748b">
+        Buy, sell, and trade kids' ski gear with your community
+      </text>
+    </g>
+  </g>
+  
+  <!-- Features at bottom -->
+  <g transform="translate(100, 450)">
+    <g transform="translate(0, 0)">
+      <circle cx="20" cy="20" r="15" fill="#3b82f6" opacity="0.2"/>
+      <text x="45" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#334155">Safe &amp; Trusted</text>
+    </g>
+    <g transform="translate(300, 0)">
+      <circle cx="20" cy="20" r="15" fill="#f97316" opacity="0.2"/>
+      <text x="45" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#334155">Community Approved</text>
+    </g>
+    <g transform="translate(600, 0)">
+      <circle cx="20" cy="20" r="15" fill="#8b5cf6" opacity="0.2"/>
+      <text x="45" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#334155">Easy Trading</text>
+    </g>
+  </g>
+  
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="50%" stop-color="#e0e7ff"/>
+      <stop offset="100%" stop-color="#f0f9ff"/>
+    </linearGradient>
+    <linearGradient id="logoGradient" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+</svg>
+
