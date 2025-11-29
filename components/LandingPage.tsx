@@ -71,7 +71,7 @@ export default function LandingPage() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link
-                href="/login"
+                href="/login?mode=signup"
                 className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
               >
                 Get Started
@@ -113,7 +113,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Why Choose GearShare?
+              Why Choose ShareMyGear?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Everything you need to trade gear with your community
@@ -192,7 +192,7 @@ export default function LandingPage() {
             Join your community and start trading gear today. It only takes a minute to get started.
           </p>
           <Link
-            href="/login"
+            href="/login?mode=signup"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 rounded-lg font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
           >
             Join GearShare

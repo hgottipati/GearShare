@@ -1,4 +1,4 @@
-# GearShare - Private Marketplace
+# ShareMyGear - Private Marketplace
 
 A private web app for trading, buying, or selling gear and equipment.
 
@@ -56,7 +56,7 @@ See [docs/FIRST_ADMIN_SETUP.md](./docs/FIRST_ADMIN_SETUP.md) for detailed instru
 
 ### Deploy to Vercel
 
-The easiest way to deploy GearShare is using [Vercel](https://vercel.com):
+The easiest way to deploy ShareMyGear is using [Vercel](https://vercel.com):
 
 1. Push your code to GitHub/GitLab/Bitbucket
 2. Import your repository in Vercel

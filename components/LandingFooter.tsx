@@ -14,7 +14,7 @@ export default function LandingFooter() {
             <Link href="/" className="flex items-center mb-4">
               <Image
                 src="/logo.png"
-                alt="GearShare"
+                alt="ShareMyGear"
                 width={120}
                 height={40}
                 className="h-10 w-auto brightness-0 invert"
@@ -119,7 +119,7 @@ export default function LandingFooter() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400">
-              © 2025 GearShare. All rights reserved.
+              © 2025 ShareMyGear. All rights reserved.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">

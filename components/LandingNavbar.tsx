@@ -31,7 +31,7 @@ export default function LandingNavbar() {
           >
             <Image
               src="/logo.png"
-              alt="GearShare"
+              alt="ShareMyGear"
               width={120}
               height={40}
               className="h-12 w-auto"
@@ -55,7 +55,7 @@ export default function LandingNavbar() {
               Sign In
             </Link>
             <Link
-              href="/login"
+              href="/login?mode=signup"
               className="px-6 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
             >
               Get Started
@@ -91,7 +91,7 @@ export default function LandingNavbar() {
                 Sign In
               </Link>
               <Link
-                href="/login"
+                href="/login?mode=signup"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg font-semibold text-center"
               >

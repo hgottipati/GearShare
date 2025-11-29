@@ -1,13 +1,14 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase-client'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const searchParams = useSearchParams()
   const [isSignUp, setIsSignUp] = useState(false)
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
@@ -17,6 +18,14 @@ export default function LoginPage() {
   const [debugInfo, setDebugInfo] = useState<string | null>(null)
   const router = useRouter()
   const supabase = createClient()
+
+  // Check for signup mode from query parameter
+  useEffect(() => {
+    const mode = searchParams.get('mode')
+    if (mode === 'signup') {
+      setIsSignUp(true)
+    }
+  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -181,7 +190,7 @@ export default function LoginPage() {
         <div className="flex flex-col items-center mb-6">
           <Image
             src="/logo.png"
-            alt="GearShare"
+            alt="ShareMyGear"
             width={150}
             height={50}
             className="mb-4 h-auto w-auto"
@@ -192,7 +201,7 @@ export default function LoginPage() {
             {isSignUp ? 'Create Account' : 'Welcome Back'}
           </h1>
           <p className="text-gray-600 text-sm mt-1">
-            {isSignUp ? 'Join the GearShare community' : 'Sign in to continue'}
+            {isSignUp ? 'Join the ShareMyGear community' : 'Sign in to continue'}
           </p>
         </div>
 

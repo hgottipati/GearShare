@@ -4,7 +4,7 @@ import { Providers } from './providers'
 import MobileBottomNav from '@/components/MobileBottomNav'
 
 export const metadata: Metadata = {
-  title: 'GearShare - Private Marketplace',
+  title: 'ShareMyGear - Private Marketplace',
   description: 'Private marketplace for gear trading',
   icons: {
     icon: '/logo.png',

@@ -46,7 +46,7 @@ export default async function MarketplacePage() {
           <div className="flex justify-center mb-6">
             <Image
               src="/logo.png"
-              alt="GearShare"
+              alt="ShareMyGear"
               width={150}
               height={50}
               className="h-auto w-auto"

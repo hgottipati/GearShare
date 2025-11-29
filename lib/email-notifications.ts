@@ -93,7 +93,7 @@ export async function notifyUserApproval(userEmail: string, userName: string) {
     to: userEmail,
     subject: 'Your account has been approved!',
     html: `
-      <h2>Welcome to GearShare!</h2>
+      <h2>Welcome to ShareMyGear!</h2>
       <p>Hi ${userName},</p>
       <p>Your account has been approved. You can now create listings and start trading!</p>
       <p><a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}">Get started</a></p>

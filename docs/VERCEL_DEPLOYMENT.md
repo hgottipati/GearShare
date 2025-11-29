@@ -1,6 +1,6 @@
 # Vercel Deployment Guide
 
-This guide will walk you through deploying GearShare to Vercel.
+This guide will walk you through deploying ShareMyGear to Vercel.
 
 ## Prerequisites
 
@@ -69,12 +69,12 @@ In the Vercel project settings, add these environment variables:
 
 ### Option 1: Rename Project (Recommended)
 
-To change the default Vercel domain (e.g., from `gearshare-nine.vercel.app` to `gearshare.vercel.app`):
+To change the default Vercel domain (e.g., from `sharemygear-nine.vercel.app` to `sharemygear.vercel.app`):
 
 1. Go to your Vercel project dashboard
 2. Click on **Settings** → **General**
 3. Scroll down to **Project Name**
-4. Change the project name to your desired name (e.g., `gearshare`)
+4. Change the project name to your desired name (e.g., `sharemygear`)
 5. Click **Save**
 6. Your new domain will be `https://your-new-name.vercel.app`
 7. **Important**: Update the `NEXT_PUBLIC_APP_URL` environment variable to match your new domain
@@ -83,7 +83,7 @@ To change the default Vercel domain (e.g., from `gearshare-nine.vercel.app` to `
 ### Option 2: Add Custom Domain
 
 1. Go to **Settings** → **Domains**
-2. Add your custom domain (e.g., `gearshare.com`)
+2. Add your custom domain (e.g., `sharemygear.com`)
 3. Follow Vercel's DNS configuration instructions
 4. SSL certificates are automatically provisioned
 5. Update `NEXT_PUBLIC_APP_URL` environment variable

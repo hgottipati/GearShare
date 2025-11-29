@@ -86,7 +86,7 @@ export default function Navbar() {
             >
               <Image
                 src="/logo.png"
-                alt="GearShare"
+                alt="ShareMyGear"
                 width={120}
                 height={40}
                 className="h-12 w-auto"
