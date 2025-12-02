@@ -83,6 +83,13 @@ export default function LandingNavbar() {
                   >
                     Lesson Program
                   </Link>
+                  <Link
+                    href="/ski-lessons/program/gear-list"
+                    onClick={() => setSkiLessonsDropdownOpen(false)}
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                  >
+                    Gear Checklist
+                  </Link>
                 </div>
               )}
             </div>
@@ -137,6 +144,13 @@ export default function LandingNavbar() {
                     className="block py-2 text-gray-600 hover:bg-gray-50 rounded-md font-medium text-sm"
                   >
                     Lesson Program
+                  </Link>
+                  <Link
+                    href="/ski-lessons/program/gear-list"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-2 text-gray-600 hover:bg-gray-50 rounded-md font-medium text-sm"
+                  >
+                    Gear Checklist
                   </Link>
                 </div>
               </div>

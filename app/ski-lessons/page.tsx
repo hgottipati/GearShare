@@ -429,6 +429,13 @@ export default function SkiLessonsPage() {
                   and warm clothing) before the first class. If you need help finding rentals or
                   purchasing gear, I&apos;m happy to assist. Please confirm below:
                 </p>
+                <Link
+                  href="/ski-lessons/program/gear-list"
+                  target="_blank"
+                  className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 font-medium mb-3"
+                >
+                  View Complete Gear Checklist →
+                </Link>
                 <div className="space-y-2">
                   <label className="flex items-center">
                     <input

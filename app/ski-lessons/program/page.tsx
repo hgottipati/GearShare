@@ -275,6 +275,24 @@ export default function SkiLessonsProgramPage() {
             </div>
           </div>
 
+          {/* Gear Checklist Section */}
+          <div className="mt-12 bg-white rounded-lg shadow-lg p-8 border-2 border-blue-200">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">⛷️ Need Help with Gear?</h2>
+              <p className="text-gray-700 mb-6 text-lg">
+                Check out our complete gear checklist with everything your child needs, including 
+                rental locations and recommended Amazon links.
+              </p>
+              <Link
+                href="/ski-lessons/program/gear-list"
+                className="inline-flex items-center px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
+              >
+                View Complete Gear Checklist
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Link>
+            </div>
+          </div>
+
           {/* CTA Section */}
           <div className="mt-12 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg shadow-lg p-8 text-center text-white">
             <h2 className="text-2xl font-bold mb-4">Ready to Start Your Ski Journey?</h2>
