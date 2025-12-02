@@ -101,9 +101,9 @@ export default function LandingNavbar() {
             </Link>
             <Link
               href="/login?mode=signup"
-              className="px-6 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+              className="px-6 py-2 bg-blue-700 text-white rounded-lg font-semibold hover:bg-blue-800 transition-colors"
             >
-              Get Started
+              Join
             </Link>
           </div>
 
@@ -164,9 +164,9 @@ export default function LandingNavbar() {
               <Link
                 href="/login?mode=signup"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg font-semibold text-center"
+                className="block px-4 py-2 bg-blue-700 text-white rounded-lg font-semibold text-center hover:bg-blue-800 transition-colors"
               >
-                Get Started
+                Join
               </Link>
             </div>
           </div>

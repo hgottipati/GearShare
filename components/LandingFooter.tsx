@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Twitter, Youtube, Linkedin, Mail, Shield, Lock, Eye, UserCheck } from 'lucide-react'
+import { Twitter, Youtube, Linkedin, Mail } from 'lucide-react'
 import Logo from './Logo'
 
 export default function LandingFooter() {
@@ -93,25 +93,6 @@ export default function LandingFooter() {
           </div>
         </div>
 
-        {/* Security Badges */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
-          <div className="flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-full">
-            <Shield className="w-4 h-4 text-green-500" />
-            <span className="text-xs font-medium">SSL Secured</span>
-          </div>
-          <div className="flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-full">
-            <Lock className="w-4 h-4 text-blue-500" />
-            <span className="text-xs font-medium">Data Encrypted</span>
-          </div>
-          <div className="flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-full">
-            <Eye className="w-4 h-4 text-purple-500" />
-            <span className="text-xs font-medium">Privacy Protected</span>
-          </div>
-          <div className="flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-full">
-            <UserCheck className="w-4 h-4 text-orange-500" />
-            <span className="text-xs font-medium">Private Community</span>
-          </div>
-        </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8">

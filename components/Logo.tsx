@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ShoppingBag } from 'lucide-react'
+import Image from 'next/image'
 
 interface LogoProps {
   className?: string
@@ -25,30 +25,31 @@ export default function Logo({
   }
 
   const isDark = variant === 'dark'
+  const iconSize = sizeClasses[size].icon
 
   const logoContent = (
-    <div className={`flex items-center gap-2 ${className}`}>
-      <div className="relative">
-        <div className={`${sizeClasses[size].icon} bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center shadow-md`}>
-          <ShoppingBag className="w-1/2 h-1/2 text-white" />
-        </div>
-        <div className={`absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full ${isDark ? 'border-2 border-gray-900' : 'border-2 border-white'}`}></div>
+    <div className={`flex items-center gap-2.5 ${className}`}>
+      <div className={`relative ${iconSize} flex items-center justify-center`}>
+        <Image
+          src="/logo.png"
+          alt="ShareMyGear Logo"
+          width={32}
+          height={32}
+          className="w-full h-full object-contain"
+          priority
+        />
       </div>
       {showText && (
-        <span className={`${sizeClasses[size].text} font-bold`}>
+        <span className={`${sizeClasses[size].text} font-semibold tracking-tight`}>
           {isDark ? (
             <>
-              <span className="text-orange-400">ShareMy</span>
-              <span className="text-blue-400">Gear</span>
+              <span className="text-gray-200">ShareMy</span>
+              <span className="text-gray-300">Gear</span>
             </>
           ) : (
             <>
-              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-                ShareMy
-              </span>
-              <span className="bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
-                Gear
-              </span>
+              <span className="text-gray-900">ShareMy</span>
+              <span className="text-blue-700">Gear</span>
             </>
           )}
         </span>

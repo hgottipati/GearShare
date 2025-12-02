@@ -25,10 +25,10 @@ export const metadata: Metadata = {
   publisher: 'ShareMyGear',
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.png', type: 'image/png' },
       { url: '/favicon.ico', sizes: 'any' },
     ],
-    apple: '/favicon.svg',
+    apple: '/favicon.png',
   },
   openGraph: {
     type: 'website',
