@@ -80,9 +80,21 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-4">
-            <Logo href="/marketplace" size="md" />
+            <Logo href="/ski-lessons" size="md" />
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-4">
+              <Link
+                href="/ski-lessons"
+                className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              >
+                Ski Lessons
+              </Link>
+              <Link
+                href="/marketplace"
+                className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              >
+                Marketplace
+              </Link>
               <Link
                 href="/listings/create"
                 className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
@@ -142,6 +154,20 @@ export default function Navbar() {
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-gray-200 py-4">
             <div className="space-y-2">
+              <Link
+                href="/ski-lessons"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md text-sm font-medium"
+              >
+                Ski Lessons
+              </Link>
+              <Link
+                href="/marketplace"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md text-sm font-medium"
+              >
+                Marketplace
+              </Link>
               <Link
                 href="/listings/create"
                 onClick={() => setMobileMenuOpen(false)}

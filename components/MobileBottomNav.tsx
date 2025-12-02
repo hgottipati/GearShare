@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Home, Plus, User, Settings, MessageSquare } from 'lucide-react'
+import { Home, Plus, User, Settings, MessageSquare, GraduationCap } from 'lucide-react'
 import { useAuth } from '@/app/providers'
 import { createClient } from '@/lib/supabase-client'
 import { useState, useEffect } from 'react'
@@ -70,15 +70,24 @@ export default function MobileBottomNav() {
   if (!user) return null
 
   const isActive = (path: string) => {
-    if (path === '/marketplace') {
-      return pathname === path || pathname === '/'
+    if (path === '/ski-lessons') {
+      return pathname === path || pathname === '/' || pathname.startsWith('/ski-lessons')
     }
-    return pathname === path
+    return pathname === path || pathname.startsWith(path)
   }
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
       <div className="flex justify-around items-center h-16">
+        <Link
+          href="/ski-lessons"
+          className={`flex flex-col items-center justify-center flex-1 h-full ${
+            isActive('/ski-lessons') ? 'text-blue-600' : 'text-gray-600'
+          }`}
+        >
+          <GraduationCap size={20} />
+          <span className="text-xs mt-1">Lessons</span>
+        </Link>
         <Link
           href="/marketplace"
           className={`flex flex-col items-center justify-center flex-1 h-full ${
@@ -86,7 +95,7 @@ export default function MobileBottomNav() {
           }`}
         >
           <Home size={20} />
-          <span className="text-xs mt-1">Home</span>
+          <span className="text-xs mt-1">Marketplace</span>
         </Link>
         <Link
           href="/listings/create"

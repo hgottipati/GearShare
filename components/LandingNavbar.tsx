@@ -9,7 +9,9 @@ export default function LandingNavbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [skiLessonsDropdownOpen, setSkiLessonsDropdownOpen] = useState(false)
+  const [marketplaceDropdownOpen, setMarketplaceDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const marketplaceDropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,22 +21,25 @@ export default function LandingNavbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close dropdown when clicking outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setSkiLessonsDropdownOpen(false)
       }
+      if (marketplaceDropdownRef.current && !marketplaceDropdownRef.current.contains(event.target as Node)) {
+        setMarketplaceDropdownOpen(false)
+      }
     }
 
-    if (skiLessonsDropdownOpen) {
+    if (skiLessonsDropdownOpen || marketplaceDropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside)
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [skiLessonsDropdownOpen])
+  }, [skiLessonsDropdownOpen, marketplaceDropdownOpen])
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -48,19 +53,13 @@ export default function LandingNavbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link
-              href="#features"
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-            >
-              Features
-            </Link>
-            {/* Ski Lessons Dropdown */}
+            {/* Ski Programs Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setSkiLessonsDropdownOpen(!skiLessonsDropdownOpen)}
                 className="flex items-center text-gray-700 hover:text-gray-900 font-medium transition-colors"
               >
-                🎿 Ski Lessons
+                Ski Programs
                 <ChevronDown
                   className={`ml-1 w-4 h-4 transition-transform ${
                     skiLessonsDropdownOpen ? 'rotate-180' : ''
@@ -93,17 +92,49 @@ export default function LandingNavbar() {
                 </div>
               )}
             </div>
+            {/* Gear Marketplace Dropdown */}
+            <div className="relative" ref={marketplaceDropdownRef}>
+              <button
+                onClick={() => setMarketplaceDropdownOpen(!marketplaceDropdownOpen)}
+                className="flex items-center text-gray-700 hover:text-gray-900 font-medium transition-colors"
+              >
+                Gear Marketplace
+                <ChevronDown
+                  className={`ml-1 w-4 h-4 transition-transform ${
+                    marketplaceDropdownOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+              {marketplaceDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                  <Link
+                    href="/marketplace-landing"
+                    onClick={() => setMarketplaceDropdownOpen(false)}
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                  >
+                    Marketplace Info
+                  </Link>
+                  <Link
+                    href="/login"
+                    onClick={() => setMarketplaceDropdownOpen(false)}
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                  >
+                    Sign In
+                  </Link>
+                </div>
+              )}
+            </div>
             <Link
-              href="/login"
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/login?mode=signup"
+              href="/ski-lessons"
               className="px-6 py-2 bg-blue-700 text-white rounded-lg font-semibold hover:bg-blue-800 transition-colors"
             >
-              Join
+              Enroll Now
+            </Link>
+            <Link
+              href="/about"
+              className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+            >
+              About Me
             </Link>
           </div>
 
@@ -121,15 +152,8 @@ export default function LandingNavbar() {
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-gray-200 py-4 bg-white/95 backdrop-blur-md">
             <div className="space-y-2">
-              <Link
-                href="#features"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md font-medium"
-              >
-                Features
-              </Link>
               <div className="px-4 py-2">
-                <div className="text-gray-700 font-medium mb-2">🎿 Ski Lessons</div>
+                <div className="text-gray-700 font-medium mb-2">Ski Programs</div>
                 <div className="pl-4 space-y-1">
                   <Link
                     href="/ski-lessons"
@@ -154,19 +178,38 @@ export default function LandingNavbar() {
                   </Link>
                 </div>
               </div>
+              <div className="px-4 py-2">
+                <div className="text-gray-700 font-medium mb-2">Gear Marketplace</div>
+                <div className="pl-4 space-y-1">
+                  <Link
+                    href="/marketplace-landing"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-2 text-gray-600 hover:bg-gray-50 rounded-md font-medium text-sm"
+                  >
+                    Marketplace Info
+                  </Link>
+                  <Link
+                    href="/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-2 text-gray-600 hover:bg-gray-50 rounded-md font-medium text-sm"
+                  >
+                    Sign In
+                  </Link>
+                </div>
+              </div>
               <Link
-                href="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md font-medium"
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/login?mode=signup"
+                href="/ski-lessons"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-4 py-2 bg-blue-700 text-white rounded-lg font-semibold text-center hover:bg-blue-800 transition-colors"
               >
-                Join
+                Enroll Now
+              </Link>
+              <Link
+                href="/about"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md font-medium"
+              >
+                About Me
               </Link>
             </div>
           </div>

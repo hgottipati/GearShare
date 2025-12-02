@@ -13,7 +13,10 @@ import {
   Mountain,
   Users,
   Package,
-  TrendingUp
+  TrendingUp,
+  GraduationCap,
+  Calendar,
+  Award
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
@@ -66,50 +69,50 @@ export default function LandingPage() {
           <div className={`text-center transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-blue-50 rounded-full border border-blue-100">
               <Snowflake className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-medium text-blue-900">Ski Community Marketplace</span>
+              <span className="text-sm font-medium text-blue-900">Ski Lessons at Summit at Snoqualmie</span>
             </div>
             
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-gray-900">
-              <span className="block">Trade ski gear with</span>
+              <span className="block">Ski Lessons for Kids</span>
               <span className="block mt-2">
-                <span className="text-blue-700">your community</span>
+                <span className="text-blue-700">Ages 6-15</span>
               </span>
             </h1>
             
             <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Kids grow fast. Gear gets expensive. Connect with other ski families to buy, sell, and trade equipment. 
-              No shipping, no fees—just local families helping each other out.
+              Personalized ski instruction focused on fun, safety, and steady progression. 
+              Build confidence and skills with structured 4-week programs or flexible one-time lessons.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Link
-                href="/login?mode=signup"
+                href="/ski-lessons"
                 className="group px-8 py-3.5 bg-blue-700 text-white rounded-lg font-semibold text-base hover:bg-blue-800 transition-colors flex items-center justify-center gap-2 shadow-sm"
               >
-                Join the Community
+                Enroll Now
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="#how-it-works"
+                href="/ski-lessons/program"
                 className="px-8 py-3.5 bg-white text-gray-700 rounded-lg font-semibold text-base border border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors"
               >
-                How it works
+                View Program Details
               </Link>
             </div>
 
-            {/* Community Stats */}
+            {/* Key Stats */}
             <div className="flex flex-wrap justify-center gap-8 md:gap-12 text-center">
               <div>
-                <div className="text-3xl font-bold text-gray-900 mb-1">Local</div>
-                <div className="text-sm text-gray-600">No shipping needed</div>
+                <div className="text-3xl font-bold text-gray-900 mb-1">4 Weeks</div>
+                <div className="text-sm text-gray-600">Structured progression</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-gray-900 mb-1">Free</div>
-                <div className="text-sm text-gray-600">No platform fees</div>
+                <div className="text-3xl font-bold text-gray-900 mb-1">2 Hours</div>
+                <div className="text-sm text-gray-600">Per lesson</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-gray-900 mb-1">Trusted</div>
-                <div className="text-sm text-gray-600">Admin-approved members</div>
+                <div className="text-3xl font-bold text-gray-900 mb-1">Personalized</div>
+                <div className="text-sm text-gray-600">1-on-1 or small groups</div>
               </div>
             </div>
           </div>
@@ -121,10 +124,10 @@ export default function LandingPage() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-              How it works
+              How Our Ski Lessons Work
             </h2>
             <p className="text-lg text-gray-600 max-w-xl mx-auto">
-              Simple steps to start trading gear with your community
+              Simple steps to get your child started on their skiing journey
             </p>
           </div>
 
@@ -140,10 +143,10 @@ export default function LandingPage() {
               </div>
               <div className="flex-1">
                 <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
-                  Join the community
+                  Submit Interest Form
                 </h3>
                 <p className="text-base text-gray-600 leading-relaxed">
-                  Sign up with your email. Admin approval keeps it safe and local—only verified ski families in your program.
+                  Fill out our simple enrollment form with your child&apos;s age, skill level, and lesson preferences. We&apos;ll match them to the perfect program.
                 </p>
               </div>
             </div>
@@ -159,10 +162,10 @@ export default function LandingPage() {
               </div>
               <div className="flex-1">
                 <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
-                  List your gear
+                  Get Matched & Schedule
                 </h3>
                 <p className="text-base text-gray-600 leading-relaxed">
-                  Post skis, boots, or jackets your kid outgrew. Add photos, size, condition, and price—or mark it as &quot;open to trade.&quot;
+                  We&apos;ll review your submission and contact you to discuss lesson options, scheduling, and answer any questions you have.
                 </p>
               </div>
             </div>
@@ -178,10 +181,10 @@ export default function LandingPage() {
               </div>
               <div className="flex-1">
                 <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
-                  Find what you need
+                  Prepare Your Gear
                 </h3>
                 <p className="text-base text-gray-600 leading-relaxed">
-                  Browse listings from other families. Search by size, type, or condition. Find gear at a fraction of retail prices.
+                  Make sure your child has all required equipment—skis, boots, helmet, gloves, goggles, and warm clothing. We can help with rentals or purchases if needed.
                 </p>
               </div>
             </div>
@@ -197,10 +200,10 @@ export default function LandingPage() {
               </div>
               <div className="flex-1">
                 <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
-                  Message and meet up
+                  Start Learning & Progress
                 </h3>
                 <p className="text-base text-gray-600 leading-relaxed">
-                  Contact the seller through the built-in messaging. Arrange a local pickup—no shipping, no payment processing fees.
+                  Attend weekly lessons at Summit at Snoqualmie. Watch your child build confidence and skills through our structured 4-week progression program or flexible one-time lessons.
                 </p>
               </div>
             </div>
@@ -216,10 +219,10 @@ export default function LandingPage() {
               </div>
               <div className="flex-1">
                 <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-2">
-                  Trade again next season
+                  Become an Independent Skier
                 </h3>
                 <p className="text-base text-gray-600 leading-relaxed">
-                  Kids grow, gear gets passed down. List what they outgrew, find what they need. It&apos;s a cycle that saves everyone money.
+                  By the end of the program, your child will have the skills and confidence to ski independently, with a solid foundation for continued improvement.
                 </p>
               </div>
             </div>
@@ -232,10 +235,10 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-              Built for ski families
+              Why Choose Our Ski Lessons
             </h2>
             <p className="text-lg text-gray-600 max-w-xl mx-auto">
-              Simple tools that make sense for how you actually trade gear
+              Personalized instruction designed for kids to learn, grow, and have fun on the slopes
             </p>
           </div>
 
@@ -245,11 +248,11 @@ export default function LandingPage() {
               featuresVisible ? 'opacity-100' : 'opacity-0'
             }`}>
               <div className="w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center mb-4">
-                <Package className="w-5 h-5 text-white" />
+                <GraduationCap className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Simple listings</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Structured Learning</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Post photos, add sizes and condition. Set a price or mark it as open to trade. No complicated forms.
+                Our 4-week progression program builds skills systematically, from foundation to independent skiing. Each week focuses on specific techniques and goals.
               </p>
             </div>
 
@@ -260,9 +263,9 @@ export default function LandingPage() {
               <div className="w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center mb-4">
                 <Users className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Verified community</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Personalized Attention</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Only approved members from your ski program. Admin-verified accounts keep it safe and local.
+                Choose between private 1-on-1 lessons or small group sessions (2-4 kids). Every child gets the attention they need to progress at their own pace.
               </p>
             </div>
 
@@ -271,12 +274,42 @@ export default function LandingPage() {
               featuresVisible ? 'opacity-100' : 'opacity-0'
             }`} style={{ transitionDelay: '200ms' }}>
               <div className="w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center mb-4">
-                <MessageSquare className="w-5 h-5 text-white" />
+                <Award className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Direct messages</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Fun & Confidence</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Message sellers to ask questions, negotiate, and arrange local pickups. No middleman, no fees.
+                We focus on making lessons enjoyable while building confidence. Kids stay excited about skiing and parents see visible progress each week.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Marketplace Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-blue-50 rounded-full border border-blue-100">
+                <Package className="w-4 h-4 text-blue-600" />
+                <span className="text-sm font-medium text-blue-900">Community Feature</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+                Gear Marketplace
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Need ski gear? Our community marketplace helps families buy, sell, and trade equipment. 
+                No shipping, no fees—just local families helping each other out.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/login?mode=signup"
+                className="px-8 py-3.5 bg-blue-700 text-white rounded-lg font-semibold text-base hover:bg-blue-800 transition-colors flex items-center justify-center gap-2"
+              >
+                Join to Access Marketplace
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </div>
@@ -286,18 +319,26 @@ export default function LandingPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-blue-700">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to start trading?
+            Ready to Start Your Ski Journey?
           </h2>
           <p className="text-lg text-blue-100 mb-8 max-w-xl mx-auto">
-            Join your ski community and start buying, selling, and trading gear today.
+            Enroll your child in our ski lessons program and watch them build confidence and skills on the slopes.
           </p>
-          <Link
-            href="/login?mode=signup"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-blue-700 rounded-lg font-semibold text-base hover:bg-gray-50 transition-colors"
-          >
-            Join the community
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/ski-lessons"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-blue-700 rounded-lg font-semibold text-base hover:bg-gray-50 transition-colors"
+            >
+              Enroll Now
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/ski-lessons/program"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-transparent text-white rounded-lg font-semibold text-base border-2 border-white hover:bg-white/10 transition-colors"
+            >
+              View Program Details
+            </Link>
+          </div>
         </div>
       </section>
     </div>

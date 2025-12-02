@@ -12,14 +12,14 @@ export default function HeroBanner() {
     <div className="mb-12">
       <div className="max-w-4xl">
         <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
-          Your Private{' '}
+          Community{' '}
           <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
             Gear Marketplace
           </span>
         </h1>
         <p className="text-xl text-gray-600 mb-8 max-w-2xl leading-relaxed">
-          Buy, sell, trade, or rent ski equipment with your community. Connect with fellow
-          enthusiasts and find the perfect gear for your next adventure.
+          Buy, sell, trade, or rent ski equipment with your ski lessons community. Connect with fellow
+          families and find the perfect gear for your next adventure.
         </p>
         <div className="flex flex-wrap gap-4">
           <Link

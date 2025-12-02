@@ -17,12 +17,12 @@ const getAppUrl = () => {
 const APP_URL = getAppUrl()
 
 export const metadata: Metadata = {
-  title: 'ShareMyGear - Private Marketplace',
-  description: 'Buy, sell, and trade kids\' ski gear with your community. Safe, approved access for ski families.',
-  keywords: ['ski gear', 'kids ski equipment', 'gear marketplace', 'ski community', 'gear trading'],
-  authors: [{ name: 'ShareMyGear' }],
-  creator: 'ShareMyGear',
-  publisher: 'ShareMyGear',
+  title: 'Ski Lessons for Kids - Summit at Snoqualmie',
+  description: 'Personalized ski lessons for kids ages 6-15. Structured 4-week programs and flexible one-time lessons focused on fun, safety, and steady progression.',
+  keywords: ['ski lessons', 'kids ski lessons', 'ski instruction', 'Summit at Snoqualmie', 'ski school', 'children skiing', 'ski gear marketplace'],
+  authors: [{ name: 'Ski Lessons' }],
+  creator: 'Ski Lessons',
+  publisher: 'Ski Lessons',
   icons: {
     icon: [
       { url: '/favicon.png', type: 'image/png' },
@@ -34,24 +34,24 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: APP_URL,
-    siteName: 'ShareMyGear',
-    title: 'ShareMyGear - Private Ski Gear Marketplace',
-    description: 'Buy, sell, and trade kids\' ski gear with your community. Safe, approved access for ski families.',
+    siteName: 'Ski Lessons',
+    title: 'Ski Lessons for Kids - Summit at Snoqualmie',
+    description: 'Personalized ski lessons for kids ages 6-15. Structured 4-week programs and flexible one-time lessons focused on fun, safety, and steady progression.',
     images: [
       {
         url: `${APP_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'ShareMyGear - Private Ski Gear Marketplace',
+        alt: 'Ski Lessons for Kids - Summit at Snoqualmie',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ShareMyGear - Private Ski Gear Marketplace',
-    description: 'Buy, sell, and trade kids\' ski gear with your community. Safe, approved access for ski families.',
+    title: 'Ski Lessons for Kids - Summit at Snoqualmie',
+    description: 'Personalized ski lessons for kids ages 6-15. Structured 4-week programs and flexible one-time lessons focused on fun, safety, and steady progression.',
     images: [`${APP_URL}/og-image.png`],
-    creator: '@sharemygear', // Update with your Twitter handle if you have one
+    creator: '@skilessons', // Update with your Twitter handle if you have one
   },
   robots: {
     index: true,
