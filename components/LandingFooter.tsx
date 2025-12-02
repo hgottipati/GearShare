@@ -18,7 +18,13 @@ export default function LandingFooter() {
               Private gear marketplace that transforms how you buy, sell, trade, and rent equipment with your community.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a 
+                href="https://x.com/Share_MyGear" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Follow us on X (Twitter)"
+              >
                 <Twitter className="w-5 h-5" />
               </a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
