@@ -5,6 +5,18 @@ import LandingFooter from '@/components/LandingFooter'
 import { Mountain, Award, Users, MapPin, Snowflake } from 'lucide-react'
 
 export default function AboutPage() {
+  // Last updated date - update this when you make changes
+  const lastUpdated = '2024-12-15'
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString)
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    })
+  }
+
   return (
     <>
       <LandingNavbar />
@@ -121,6 +133,11 @@ export default function AboutPage() {
                 Whether it&apos;s a structured 4-week progression program or a flexible one-time lesson, I work to match each child&apos;s age, comfort level, and learning style to create the best possible experience on the slopes.
               </p>
             </div>
+
+            {/* Last Updated */}
+            <div className="mt-8 text-center text-sm text-gray-500">
+              Last updated: {formatDate(lastUpdated)}
+            </div>
           </div>
         </section>
 
@@ -154,4 +171,5 @@ export default function AboutPage() {
     </>
   )
 }
+
 

@@ -8,6 +8,7 @@ import Navbar from './Navbar'
 import Announcements from './Announcements'
 import { ListingCardSkeleton } from './SkeletonLoader'
 import HeroBanner from './HeroBanner'
+import { getRelativeTime, isNewContent } from '@/lib/utils'
 
 interface Listing {
   id: string
@@ -364,6 +365,7 @@ export default function MarketplaceList() {
               const city = listing.location
                 ? listing.location.split(',')[0].trim()
                 : null
+              const isNew = isNewContent(listing.created_at, 24)
               
               return (
                 <Link
@@ -385,8 +387,13 @@ export default function MarketplaceList() {
                         <span className="text-sm">No Image</span>
                       </div>
                     )}
+                    {isNew && (
+                      <div className="absolute top-3 left-3 bg-red-600 text-white px-2.5 py-1 rounded-md text-xs font-bold shadow-sm z-10">
+                        NEW
+                      </div>
+                    )}
                     {city && (
-                      <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-gray-800 px-2.5 py-1 rounded-md text-xs font-semibold shadow-sm">
+                      <div className={`absolute ${isNew ? 'top-12' : 'top-3'} left-3 bg-white/95 backdrop-blur-sm text-gray-800 px-2.5 py-1 rounded-md text-xs font-semibold shadow-sm`}>
                         📍 {city}
                       </div>
                     )}
@@ -437,6 +444,9 @@ export default function MarketplaceList() {
                           </span>
                         )}
                       </div>
+                    </div>
+                    <div className="mt-2 text-xs text-gray-500">
+                      {getRelativeTime(listing.created_at)}
                     </div>
                   </div>
                 </Link>

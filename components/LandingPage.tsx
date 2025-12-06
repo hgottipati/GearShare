@@ -19,11 +19,37 @@ import {
   Award
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import LiveStats from './LiveStats'
+import SeasonStatus from './SeasonStatus'
+import WeatherWidget from './WeatherWidget'
+import RecentListings from './RecentListings'
+import TwitterFeed from './TwitterFeed'
 
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [featuresVisible, setFeaturesVisible] = useState(false)
   const [howItWorksVisible, setHowItWorksVisible] = useState(false)
+
+  // Nearby resorts for weather (Summit at Snoqualmie area)
+  const nearbyResorts = [
+    { name: 'Summit', fullName: 'Summit at Snoqualmie', lat: 47.4267, lon: -121.4206 },
+    { name: 'Crystal', fullName: 'Crystal Mountain Resort', lat: 46.9356, lon: -121.4744 },
+    { name: 'Stevens', fullName: 'Stevens Pass', lat: 47.7447, lon: -121.0892 },
+  ]
+
+  // Twitter accounts for traffic and conditions
+  const twitterAccounts = [
+    {
+      username: 'wsdot_passes',
+      displayName: 'WSDOT Mountain Passes',
+      url: 'https://x.com/wsdot_passes',
+    },
+    {
+      username: 'summitsnow411',
+      displayName: 'Summit Snow 411',
+      url: 'https://x.com/summitsnow411',
+    },
+  ]
 
   useEffect(() => {
     setIsVisible(true)
@@ -58,7 +84,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
+      <section className="relative overflow-hidden pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-10 w-64 h-64 border-2 border-slate-300 rounded-full"></div>
@@ -67,9 +93,12 @@ export default function LandingPage() {
 
         <div className="relative max-w-6xl mx-auto">
           <div className={`text-center transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-blue-50 rounded-full border border-blue-100">
-              <Snowflake className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-medium text-blue-900">Ski Lessons at Summit at Snoqualmie</span>
+            <div className="flex flex-col items-center gap-4 mb-6">
+              <SeasonStatus />
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full border border-blue-100">
+                <Snowflake className="w-4 h-4 text-blue-600" />
+                <span className="text-sm font-medium text-blue-900">Ski Lessons at Summit at Snoqualmie</span>
+              </div>
             </div>
             
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-gray-900">
@@ -84,7 +113,7 @@ export default function LandingPage() {
               Build confidence and skills with structured 4-week programs or flexible one-time lessons.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link
                 href="/ski-lessons"
                 className="group px-8 py-3.5 bg-blue-700 text-white rounded-lg font-semibold text-base hover:bg-blue-800 transition-colors flex items-center justify-center gap-2 shadow-sm"
@@ -98,6 +127,16 @@ export default function LandingPage() {
               >
                 View Program Details
               </Link>
+            </div>
+
+            {/* Weather Widget */}
+            <div className="mb-12">
+              <WeatherWidget resorts={nearbyResorts} />
+            </div>
+
+            {/* Live Stats */}
+            <div className="mb-16">
+              <LiveStats />
             </div>
 
             {/* Key Stats */}
@@ -119,8 +158,13 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Recently Added Listings Section */}
+      <section className="pt-12 pb-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <RecentListings />
+      </section>
+
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section id="how-it-works" className="pt-16 pb-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
@@ -231,7 +275,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
@@ -244,7 +288,7 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {/* Feature 1 */}
-            <div className={`p-6 bg-gray-50 rounded-lg border border-gray-200 transition-opacity duration-500 ${
+            <div className={`p-6 bg-white rounded-lg border border-gray-200 transition-opacity duration-500 ${
               featuresVisible ? 'opacity-100' : 'opacity-0'
             }`}>
               <div className="w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center mb-4">
@@ -257,7 +301,7 @@ export default function LandingPage() {
             </div>
 
             {/* Feature 2 */}
-            <div className={`p-6 bg-gray-50 rounded-lg border border-gray-200 transition-opacity duration-500 ${
+            <div className={`p-6 bg-white rounded-lg border border-gray-200 transition-opacity duration-500 ${
               featuresVisible ? 'opacity-100' : 'opacity-0'
             }`} style={{ transitionDelay: '100ms' }}>
               <div className="w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center mb-4">
@@ -270,7 +314,7 @@ export default function LandingPage() {
             </div>
 
             {/* Feature 3 */}
-            <div className={`p-6 bg-gray-50 rounded-lg border border-gray-200 transition-opacity duration-500 ${
+            <div className={`p-6 bg-white rounded-lg border border-gray-200 transition-opacity duration-500 ${
               featuresVisible ? 'opacity-100' : 'opacity-0'
             }`} style={{ transitionDelay: '200ms' }}>
               <div className="w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center mb-4">
@@ -313,6 +357,11 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Twitter Feed Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <TwitterFeed accounts={twitterAccounts} />
       </section>
 
       {/* CTA Section */}

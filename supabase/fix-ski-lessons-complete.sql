@@ -64,3 +64,4 @@ CREATE POLICY "Admins can delete ski lesson submissions"
     )
   );
 
+
