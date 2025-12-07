@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import LandingNavbar from '@/components/LandingNavbar'
 import LandingFooter from '@/components/LandingFooter'
-import { Mountain, Award, Users, MapPin, Snowflake } from 'lucide-react'
+import { Mountain, Award, Users, MapPin, Snowflake, Phone } from 'lucide-react'
 
 export default function AboutPage() {
   // Last updated date - update this when you make changes
@@ -134,6 +134,25 @@ export default function AboutPage() {
                   Skiing across diverse mountain ranges—from the Himalayas to Japan, Canada, and throughout the US—brings varied perspectives to teaching.
                 </p>
               </div>
+
+              {/* Contact */}
+              <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-lg p-6 border border-teal-100">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-teal-700 rounded-lg flex items-center justify-center">
+                    <Phone className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900">Contact</h3>
+                    <p className="text-sm text-gray-600">Get in Touch</p>
+                  </div>
+                </div>
+                <a 
+                  href="tel:+14253015595"
+                  className="text-gray-700 text-sm leading-relaxed hover:text-teal-700 transition-colors font-medium"
+                >
+                  +1 (425) 301-5595
+                </a>
+              </div>
             </div>
 
             {/* Teaching Philosophy */}
@@ -160,9 +179,18 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Ready to Start Your Ski Journey?
             </h2>
-            <p className="text-lg text-blue-100 mb-8 max-w-xl mx-auto">
+            <p className="text-lg text-blue-100 mb-6 max-w-xl mx-auto">
               Let&apos;s work together to help your child discover the joy of skiing.
             </p>
+            <div className="mb-8">
+              <a 
+                href="tel:+14253015595"
+                className="inline-flex items-center gap-2 text-white hover:text-blue-100 transition-colors text-lg font-medium"
+              >
+                <Phone className="w-5 h-5" />
+                +1 (425) 301-5595
+              </a>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/ski-lessons"
