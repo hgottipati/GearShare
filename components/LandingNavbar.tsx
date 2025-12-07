@@ -49,25 +49,27 @@ export default function LandingNavbar() {
                 />
               </button>
               {skiLessonsDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                  <Link
-                    href="/ski-lessons"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                  >
-                    Interest Form
-                  </Link>
-                  <Link
-                    href="/ski-lessons/program"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                  >
-                    Lesson Program
-                  </Link>
-                  <Link
-                    href="/ski-lessons/program/gear-list"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                  >
-                    Gear Checklist
-                  </Link>
+                <div className="absolute top-full left-0 mt-1 pt-1 w-48 bg-transparent z-50">
+                  <div className="bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                    <Link
+                      href="/ski-lessons"
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                    >
+                      Interest Form
+                    </Link>
+                    <Link
+                      href="/ski-lessons/program"
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                    >
+                      Lesson Program
+                    </Link>
+                    <Link
+                      href="/ski-lessons/program/gear-list"
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                    >
+                      Gear Checklist
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
@@ -88,19 +90,21 @@ export default function LandingNavbar() {
                 />
               </button>
               {marketplaceDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                  <Link
-                    href="/marketplace-landing"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                  >
-                    Marketplace Info
-                  </Link>
-                  <Link
-                    href="/login"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                  >
-                    Sign In
-                  </Link>
+                <div className="absolute top-full left-0 mt-1 pt-1 w-48 bg-transparent z-50">
+                  <div className="bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                    <Link
+                      href="/marketplace-landing"
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                    >
+                      Marketplace Info
+                    </Link>
+                    <Link
+                      href="/login"
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                    >
+                      Sign In
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
