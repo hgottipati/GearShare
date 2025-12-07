@@ -61,7 +61,8 @@ export default function WeatherWidget({ resorts }: WeatherWidgetProps) {
     // Refresh every 30 minutes
     const interval = setInterval(loadWeather, 30 * 60 * 1000)
     return () => clearInterval(interval)
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resorts])
 
   useEffect(() => {
     // Update popup positions on scroll
@@ -84,7 +85,9 @@ export default function WeatherWidget({ resorts }: WeatherWidgetProps) {
   }, [hoveredIndex, clickedIndex, checkPopupPosition])
 
   const loadWeather = async () => {
-    if (!process.env.NEXT_PUBLIC_WEATHER_API_KEY) {
+    const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY
+    if (!apiKey) {
+      console.error('Weather API key not configured')
       setError('Weather API key not configured')
       setLoading(false)
       return
@@ -94,14 +97,18 @@ export default function WeatherWidget({ resorts }: WeatherWidgetProps) {
       const weatherPromises = resorts.map(async (resort) => {
         // Get current weather
         const currentResponse = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${resort.lat}&lon=${resort.lon}&units=imperial&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${resort.lat}&lon=${resort.lon}&units=imperial&appid=${apiKey}`
         )
-        if (!currentResponse.ok) throw new Error('Weather API error')
+        if (!currentResponse.ok) {
+          const errorData = await currentResponse.json().catch(() => ({}))
+          console.error(`Weather API error for ${resort.name}:`, currentResponse.status, errorData)
+          throw new Error(`Weather API error: ${currentResponse.status}`)
+        }
         const currentData = await currentResponse.json()
 
         // Get 5-day forecast
         const forecastResponse = await fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${resort.lat}&lon=${resort.lon}&units=imperial&appid=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${resort.lat}&lon=${resort.lon}&units=imperial&appid=${apiKey}`
         )
         let forecast: ForecastDay[] = []
         
@@ -150,11 +157,13 @@ export default function WeatherWidget({ resorts }: WeatherWidgetProps) {
       })
 
       const results = await Promise.all(weatherPromises)
+      console.log('Weather data loaded:', results)
       setWeatherData(results)
       setError(null)
     } catch (err) {
       console.error('Error loading weather:', err)
-      setError('Unable to load weather')
+      setError(err instanceof Error ? err.message : 'Unable to load weather')
+      setWeatherData([])
     } finally {
       setLoading(false)
     }
@@ -213,8 +222,20 @@ export default function WeatherWidget({ resorts }: WeatherWidgetProps) {
     )
   }
 
-  if (error || weatherData.length === 0) {
-    return null // Silently fail if weather unavailable
+  if (error) {
+    // Show error message in development, silently fail in production
+    if (process.env.NODE_ENV === 'development') {
+      return (
+        <div className="text-center text-sm text-gray-500 p-4">
+          Weather unavailable: {error}
+        </div>
+      )
+    }
+    return null
+  }
+
+  if (weatherData.length === 0 && !loading) {
+    return null // Silently fail if no data
   }
 
   const showForecast = (index: number) => {
