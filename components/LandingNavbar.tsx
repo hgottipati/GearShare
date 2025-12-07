@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import Logo from './Logo'
 
@@ -10,8 +10,6 @@ export default function LandingNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [skiLessonsDropdownOpen, setSkiLessonsDropdownOpen] = useState(false)
   const [marketplaceDropdownOpen, setMarketplaceDropdownOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
-  const marketplaceDropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,25 +19,6 @@ export default function LandingNavbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close dropdowns when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setSkiLessonsDropdownOpen(false)
-      }
-      if (marketplaceDropdownRef.current && !marketplaceDropdownRef.current.contains(event.target as Node)) {
-        setMarketplaceDropdownOpen(false)
-      }
-    }
-
-    if (skiLessonsDropdownOpen || marketplaceDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [skiLessonsDropdownOpen, marketplaceDropdownOpen])
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -54,9 +33,12 @@ export default function LandingNavbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {/* Ski Programs Dropdown */}
-            <div className="relative" ref={dropdownRef}>
+            <div 
+              className="relative"
+              onMouseEnter={() => setSkiLessonsDropdownOpen(true)}
+              onMouseLeave={() => setSkiLessonsDropdownOpen(false)}
+            >
               <button
-                onClick={() => setSkiLessonsDropdownOpen(!skiLessonsDropdownOpen)}
                 className="flex items-center text-gray-700 hover:text-gray-900 font-medium transition-colors"
               >
                 Ski Programs
@@ -70,21 +52,18 @@ export default function LandingNavbar() {
                 <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                   <Link
                     href="/ski-lessons"
-                    onClick={() => setSkiLessonsDropdownOpen(false)}
                     className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                   >
                     Interest Form
                   </Link>
                   <Link
                     href="/ski-lessons/program"
-                    onClick={() => setSkiLessonsDropdownOpen(false)}
                     className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                   >
                     Lesson Program
                   </Link>
                   <Link
                     href="/ski-lessons/program/gear-list"
-                    onClick={() => setSkiLessonsDropdownOpen(false)}
                     className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                   >
                     Gear Checklist
@@ -93,9 +72,12 @@ export default function LandingNavbar() {
               )}
             </div>
             {/* Gear Marketplace Dropdown */}
-            <div className="relative" ref={marketplaceDropdownRef}>
+            <div 
+              className="relative"
+              onMouseEnter={() => setMarketplaceDropdownOpen(true)}
+              onMouseLeave={() => setMarketplaceDropdownOpen(false)}
+            >
               <button
-                onClick={() => setMarketplaceDropdownOpen(!marketplaceDropdownOpen)}
                 className="flex items-center text-gray-700 hover:text-gray-900 font-medium transition-colors"
               >
                 Gear Marketplace
@@ -109,14 +91,12 @@ export default function LandingNavbar() {
                 <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                   <Link
                     href="/marketplace-landing"
-                    onClick={() => setMarketplaceDropdownOpen(false)}
                     className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                   >
                     Marketplace Info
                   </Link>
                   <Link
                     href="/login"
-                    onClick={() => setMarketplaceDropdownOpen(false)}
                     className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                   >
                     Sign In
