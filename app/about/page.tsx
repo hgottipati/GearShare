@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import LandingNavbar from '@/components/LandingNavbar'
 import LandingFooter from '@/components/LandingFooter'
 import { Mountain, Award, Users, MapPin, Snowflake } from 'lucide-react'
@@ -21,6 +22,18 @@ export default function AboutPage() {
     <>
       <LandingNavbar />
       <div className="min-h-screen bg-white">
+        {/* Panoramic Photo Section */}
+        <section className="relative w-full h-64 md:h-96 lg:h-[500px] overflow-hidden">
+          <Image 
+            src="/panoramic-photo.jpg" 
+            alt="Mountain panorama" 
+            fill
+            className="object-cover object-center"
+            priority
+            sizes="100vw"
+          />
+        </section>
+        
         {/* Hero Section */}
         <section className="relative overflow-hidden pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
           <div className="max-w-4xl mx-auto text-center">
