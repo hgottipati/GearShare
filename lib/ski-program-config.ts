@@ -9,7 +9,7 @@
 
 export const skiProgramConfig = {
   session1: {
-    startDate: '2025-01-24', // January 24, 2025 (Saturday)
+    startDate: '2026-01-24', // January 24, 2025 (Saturday)
     name: 'Session 1',
   },
   session2: {
