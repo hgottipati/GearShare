@@ -92,17 +92,23 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white">
       {/* Session Start Date Banner - positioned below fixed navbar */}
       {nextSession && nextSession.startDate && (
-        <div className="fixed top-16 left-0 right-0 z-40 bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <div className="fixed top-16 left-0 right-0 z-40 bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md overflow-hidden">
+          <div className="marquee-container py-3">
             <Link
               href="/ski-lessons"
-              className="flex items-center justify-center gap-2 hover:opacity-90 transition-opacity group"
+              className="marquee-content animate-marquee flex items-center gap-2 hover:opacity-90 transition-opacity group"
             >
-              <Calendar className="w-5 h-5" />
+              <Calendar className="w-5 h-5 flex-shrink-0" />
               <span className="font-semibold">
-                {nextSession.name} starting {formatSessionDate(nextSession.startDate)}
+                {nextSession.name} starting {formatSessionDate(nextSession.startDate)} • Enroll Now →
               </span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 flex-shrink-0" />
+              {/* Duplicate for seamless loop */}
+              <Calendar className="w-5 h-5 flex-shrink-0 ml-8" />
+              <span className="font-semibold">
+                {nextSession.name} starting {formatSessionDate(nextSession.startDate)} • Enroll Now →
+              </span>
+              <ArrowRight className="w-4 h-4 flex-shrink-0" />
             </Link>
           </div>
         </div>
