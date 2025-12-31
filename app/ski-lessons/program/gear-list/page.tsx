@@ -296,7 +296,7 @@ export default function GearListPage() {
                 </h3>
                 <p className="text-gray-700 text-sm">
                   Gently used gear at a fraction of the cost. 
-                  You can ask for used gear at the local stores or checkout our Gear Marketplace for local gear swaps <a href="https://sharemygear.vercel.app/marketplace-landing" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">https://sharemygear.vercel.app/marketplace-landing</a>
+                  You can ask for used gear at the local stores or checkout our <a href="https://sharemygear.vercel.app/marketplace-landing" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">Gear Marketplace</a> for local gear swaps.
                 </p>
               </div>
             </div>
