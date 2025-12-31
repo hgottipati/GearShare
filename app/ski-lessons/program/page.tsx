@@ -4,7 +4,8 @@ import { useState, useRef, useEffect } from 'react'
 import LandingNavbar from '@/components/LandingNavbar'
 import LandingFooter from '@/components/LandingFooter'
 import Link from 'next/link'
-import { ChevronRight, ChevronLeft, CheckCircle2, ArrowRight } from 'lucide-react'
+import { ChevronRight, ChevronLeft, CheckCircle2, ArrowRight, Calendar } from 'lucide-react'
+import { skiProgramConfig, formatSessionDate, isSessionUpcoming } from '@/lib/ski-program-config'
 
 const weekPrograms = [
   {
@@ -177,6 +178,53 @@ export default function SkiLessonsProgramPage() {
               </div>
             </div>
           </div>
+
+          {/* Session Dates */}
+          {(skiProgramConfig.session1.startDate || skiProgramConfig.session2.startDate) && (
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-lg p-8 mb-8 border-2 border-blue-200">
+              <div className="flex items-center gap-3 mb-4">
+                <Calendar className="w-6 h-6 text-blue-600" />
+                <h2 className="text-2xl font-bold text-gray-900">Session Start Dates</h2>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                {skiProgramConfig.session1.startDate && (
+                  <div className="bg-white rounded-lg p-6 border border-blue-200">
+                    <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
+                      {skiProgramConfig.session1.name}
+                    </h3>
+                    <p className="text-lg text-gray-700 font-medium">
+                      {formatSessionDate(skiProgramConfig.session1.startDate)}
+                    </p>
+                    {isSessionUpcoming(skiProgramConfig.session1.startDate) && (
+                      <p className="text-sm text-green-600 mt-2 font-medium">✓ Upcoming</p>
+                    )}
+                  </div>
+                )}
+                {skiProgramConfig.session2.startDate && (
+                  <div className="bg-white rounded-lg p-6 border border-blue-200">
+                    <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-indigo-600 rounded-full"></span>
+                      {skiProgramConfig.session2.name}
+                    </h3>
+                    <p className="text-lg text-gray-700 font-medium">
+                      {formatSessionDate(skiProgramConfig.session2.startDate)}
+                    </p>
+                    {isSessionUpcoming(skiProgramConfig.session2.startDate) && (
+                      <p className="text-sm text-green-600 mt-2 font-medium">✓ Upcoming</p>
+                    )}
+                  </div>
+                )}
+              </div>
+              {(!skiProgramConfig.session1.startDate || !skiProgramConfig.session2.startDate) && (
+                <p className="text-sm text-gray-600 mt-4">
+                  {!skiProgramConfig.session1.startDate && !skiProgramConfig.session2.startDate
+                    ? 'Session dates will be announced soon.'
+                    : 'Additional session dates will be announced soon.'}
+                </p>
+              )}
+            </div>
+          )}
 
           {/* Week Navigation */}
           <div ref={weekNavigationRef} className="bg-white rounded-lg shadow-lg p-6 mb-8">

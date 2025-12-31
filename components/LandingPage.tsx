@@ -24,6 +24,7 @@ import SeasonStatus from './SeasonStatus'
 import WeatherWidget from './WeatherWidget'
 import RecentListings from './RecentListings'
 import TwitterFeed from './TwitterFeed'
+import { getNextSession, formatSessionDate, isSessionUpcoming } from '@/lib/ski-program-config'
 
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -81,8 +82,28 @@ export default function LandingPage() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const nextSession = getNextSession()
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Session Start Date Banner */}
+      {nextSession && isSessionUpcoming(nextSession.startDate) && (
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <Link
+              href="/ski-lessons"
+              className="flex items-center justify-center gap-2 hover:opacity-90 transition-opacity group"
+            >
+              <Calendar className="w-5 h-5" />
+              <span className="font-semibold">
+                {nextSession.name} starting {formatSessionDate(nextSession.startDate)}
+              </span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
         {/* Subtle background pattern */}
