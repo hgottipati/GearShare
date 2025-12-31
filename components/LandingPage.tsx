@@ -24,7 +24,7 @@ import SeasonStatus from './SeasonStatus'
 import WeatherWidget from './WeatherWidget'
 import RecentListings from './RecentListings'
 import TwitterFeed from './TwitterFeed'
-import { getNextSession, formatSessionDate, isSessionUpcoming } from '@/lib/ski-program-config'
+import { getNextSession, formatSessionDate, skiProgramConfig } from '@/lib/ski-program-config'
 
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -82,13 +82,17 @@ export default function LandingPage() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const nextSession = getNextSession()
+  // Get the next session, or fall back to session1 if it exists
+  const nextSession = getNextSession() || (skiProgramConfig.session1.startDate ? {
+    ...skiProgramConfig.session1,
+    startDate: skiProgramConfig.session1.startDate,
+  } : null)
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Session Start Date Banner */}
-      {nextSession && isSessionUpcoming(nextSession.startDate) && (
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+      {/* Session Start Date Banner - positioned below fixed navbar */}
+      {nextSession && nextSession.startDate && (
+        <div className="fixed top-16 left-0 right-0 z-40 bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <Link
               href="/ski-lessons"
@@ -105,7 +109,9 @@ export default function LandingPage() {
       )}
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white">
+      <section className={`relative overflow-hidden pb-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white ${
+        nextSession ? 'pt-32' : 'pt-24'
+      }`}>
         {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-10 w-64 h-64 border-2 border-slate-300 rounded-full"></div>
