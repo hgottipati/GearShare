@@ -277,7 +277,7 @@ export default function GearListPage() {
                   Consider renting equipment, especially if your child is still growing rapidly. Equipment can be rented for ~$180/full season.
                 </p>
                 <p className="text-xs text-gray-600 italic">
-                  Bonus: Epic Pass holders also get 20% off gear, rentals, and lessons with Epic Mountain Rewards.
+                  Check out the local Equipment Rental Locations below.
                 </p>
               </div>
               <div className="bg-white rounded-xl p-6 border-2 border-orange-100 hover:border-orange-300 transition-colors">
@@ -295,7 +295,8 @@ export default function GearListPage() {
                   Swap Clubs & Second-Hand
                 </h3>
                 <p className="text-gray-700 text-sm">
-                  Gently used gear at a fraction of the cost. Ask for used gear to buy so you can sell them back next season.
+                  Gently used gear at a fraction of the cost. 
+                  You can ask for used gear at the local stores or checkout our Gear Marketplace for local gear swaps <a href="https://sharemygear.vercel.app/marketplace-landing" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">https://sharemygear.vercel.app/marketplace-landing</a>
                 </p>
               </div>
             </div>
