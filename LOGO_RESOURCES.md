@@ -104,3 +104,4 @@ To replace it:
 Or if you get an SVG, you can paste it directly into the component.
 
 
+
