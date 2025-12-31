@@ -9,14 +9,21 @@
 
 export const skiProgramConfig = {
   session1: {
-    startDate: '2026-01-24', // January 24, 2025 (Saturday)
+    startDate: '2026-01-24', // January 24, 2026 (Saturday)
     name: 'Session 1',
+    classDates: [
+      '2026-01-24', // 1st class: Saturday, January 24, 2026
+      '2026-01-31', // 2nd class: Saturday, January 31, 2026
+      '2026-02-07', // 3rd class: Saturday, February 07, 2026
+      '2026-02-14', // 4th class: Saturday, February 14, 2026
+    ] as string[],
   },
   session2: {
-    startDate: null as string | null, // Set date when scheduled, e.g., '2025-02-15'
+    startDate: null as string | null, // Set date when scheduled, e.g., '2026-02-15'
     name: 'Session 2',
+    classDates: [] as string[], // Will be populated when session is scheduled
   },
-} as const
+}
 
 /**
  * Helper function to format date for display
@@ -25,6 +32,21 @@ export function formatSessionDate(dateString: string | null): string {
   if (!dateString) return ''
   
   const date = new Date(dateString + 'T00:00:00') // Add time to avoid timezone issues
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }
+  
+  return date.toLocaleDateString('en-US', options)
+}
+
+/**
+ * Helper function to format date in shorter format (e.g., "Saturday, January 24, 2026")
+ */
+export function formatClassDate(dateString: string): string {
+  const date = new Date(dateString + 'T00:00:00')
   const options: Intl.DateTimeFormatOptions = {
     weekday: 'long',
     year: 'numeric',

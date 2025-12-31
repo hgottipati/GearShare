@@ -5,7 +5,7 @@ import LandingNavbar from '@/components/LandingNavbar'
 import LandingFooter from '@/components/LandingFooter'
 import Link from 'next/link'
 import { ChevronRight, ChevronLeft, CheckCircle2, ArrowRight, Calendar } from 'lucide-react'
-import { skiProgramConfig, formatSessionDate, isSessionUpcoming } from '@/lib/ski-program-config'
+import { skiProgramConfig, formatSessionDate, formatClassDate, isSessionUpcoming } from '@/lib/ski-program-config'
 
 const weekPrograms = [
   {
@@ -182,36 +182,66 @@ export default function SkiLessonsProgramPage() {
           {/* Session Dates */}
           {(skiProgramConfig.session1.startDate || skiProgramConfig.session2.startDate) && (
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-lg p-8 mb-8 border-2 border-blue-200">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-6">
                 <Calendar className="w-6 h-6 text-blue-600" />
-                <h2 className="text-2xl font-bold text-gray-900">Session Start Dates</h2>
+                <h2 className="text-2xl font-bold text-gray-900">Session Dates</h2>
               </div>
               <div className="grid md:grid-cols-2 gap-6">
                 {skiProgramConfig.session1.startDate && (
                   <div className="bg-white rounded-lg p-6 border border-blue-200">
-                    <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                    <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
                       {skiProgramConfig.session1.name}
                     </h3>
-                    <p className="text-lg text-gray-700 font-medium">
-                      {formatSessionDate(skiProgramConfig.session1.startDate)}
-                    </p>
+                    {skiProgramConfig.session1.classDates && skiProgramConfig.session1.classDates.length > 0 ? (
+                      <div className="space-y-3">
+                        {skiProgramConfig.session1.classDates.map((date, index) => (
+                          <div key={date} className="flex items-start gap-3">
+                            <span className="text-blue-600 font-semibold min-w-[60px]">
+                              {index + 1}{index === 0 ? 'st' : index === 1 ? 'nd' : index === 2 ? 'rd' : 'th'} class:
+                            </span>
+                            <span className="text-gray-700">
+                              {formatClassDate(date)}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-lg text-gray-700 font-medium">
+                        {formatSessionDate(skiProgramConfig.session1.startDate)}
+                      </p>
+                    )}
                     {isSessionUpcoming(skiProgramConfig.session1.startDate) && (
-                      <p className="text-sm text-green-600 mt-2 font-medium">✓ Upcoming</p>
+                      <p className="text-sm text-green-600 mt-4 font-medium">✓ Upcoming</p>
                     )}
                   </div>
                 )}
                 {skiProgramConfig.session2.startDate && (
                   <div className="bg-white rounded-lg p-6 border border-blue-200">
-                    <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                    <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <span className="w-2 h-2 bg-indigo-600 rounded-full"></span>
                       {skiProgramConfig.session2.name}
                     </h3>
-                    <p className="text-lg text-gray-700 font-medium">
-                      {formatSessionDate(skiProgramConfig.session2.startDate)}
-                    </p>
+                    {skiProgramConfig.session2.classDates && skiProgramConfig.session2.classDates.length > 0 ? (
+                      <div className="space-y-3">
+                        {skiProgramConfig.session2.classDates.map((date, index) => (
+                          <div key={date} className="flex items-start gap-3">
+                            <span className="text-indigo-600 font-semibold min-w-[60px]">
+                              {index + 1}{index === 0 ? 'st' : index === 1 ? 'nd' : index === 2 ? 'rd' : 'th'} class:
+                            </span>
+                            <span className="text-gray-700">
+                              {formatClassDate(date)}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-lg text-gray-700 font-medium">
+                        {formatSessionDate(skiProgramConfig.session2.startDate)}
+                      </p>
+                    )}
                     {isSessionUpcoming(skiProgramConfig.session2.startDate) && (
-                      <p className="text-sm text-green-600 mt-2 font-medium">✓ Upcoming</p>
+                      <p className="text-sm text-green-600 mt-4 font-medium">✓ Upcoming</p>
                     )}
                   </div>
                 )}
