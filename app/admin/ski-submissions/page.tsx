@@ -26,7 +26,7 @@ interface SkiSubmission {
 const lessonTypeLabels: Record<string, string> = {
   '4-week-private': '4-Week Private ($640)',
   '4-week-group': '4-Week Small Group ($440/ea)',
-  'one-time-private': 'One-Time Private ($160)',
+  'one-time-private': 'One-Time Private ($180)',
   'one-time-group': 'One-Time Small Group ($120/ea)',
 }
 

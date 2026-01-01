@@ -203,7 +203,7 @@ export default function SkiLessonsPage() {
                     One-time lessons you can book as needed.
                   </p>
                   <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Private (1-on-1) - $160</li>
+                    <li>• Private (1-on-1) - $180</li>
                     <li>• Small Group - $120 /ea kid (4 kids max/class)</li>
                   </ul>
                 </div>
@@ -382,7 +382,7 @@ export default function SkiLessonsPage() {
                     <option value="4-week-group">Small Group - $440 /ea kid (2-3 kids)</option>
                   </optgroup>
                   <optgroup label="One-Time Lessons">
-                    <option value="one-time-private">Private (1-on-1) - $160</option>
+                    <option value="one-time-private">Private (1-on-1) - $180</option>
                     <option value="one-time-group">Small Group - $120 /ea kid (4 kids max)</option>
                   </optgroup>
                 </select>
