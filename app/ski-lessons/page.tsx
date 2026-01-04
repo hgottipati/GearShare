@@ -192,7 +192,7 @@ export default function SkiLessonsPage() {
                   </p>
                   <ul className="text-sm text-gray-700 space-y-1">
                     <li>• Private (1-on-1) - $640 (1 hr per session)</li>
-                    <li>• Small Group - $440 /ea kid (2-3 kids /class)</li>
+                    <li>• Small Group - $440 /ea kid (4 kids max/class)</li>
                   </ul>
                 </div>
                 <div>
