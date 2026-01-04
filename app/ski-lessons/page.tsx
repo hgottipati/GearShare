@@ -191,7 +191,7 @@ export default function SkiLessonsPage() {
                     A structured 4-week course designed for steady, consistent improvement.
                   </p>
                   <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Private (1-on-1) - $640</li>
+                    <li>• Private (1-on-1) - $840</li>
                     <li>• Small Group - $440 /ea kid (2-3 kids /class)</li>
                   </ul>
                 </div>
@@ -378,7 +378,7 @@ export default function SkiLessonsPage() {
                 >
                   <option value="">Select lesson type</option>
                   <optgroup label="4-Week Progression Program">
-                    <option value="4-week-private">Private (1-on-1) - $640</option>
+                    <option value="4-week-private">Private (1-on-1) - $840</option>
                     <option value="4-week-group">Small Group - $440 /ea kid (2-3 kids)</option>
                   </optgroup>
                   <optgroup label="One-Time Lessons">

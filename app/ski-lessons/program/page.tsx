@@ -172,7 +172,7 @@ export default function SkiLessonsProgramPage() {
                     <strong>Format:</strong> Private (1-on-1) or Small Group (2-3 kids)
                   </li>
                   <li>
-                    <strong>Pricing:</strong> Private $640 | Small Group $440/ea
+                    <strong>Pricing:</strong> Private $840 | Small Group $440/ea
                   </li>
                 </ul>
               </div>
