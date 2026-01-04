@@ -110,9 +110,9 @@ Or if you want to add it to your landing page/navbar, you can add a link to `/sk
 5. **Phone Number** (required)
 6. **Ski Level** (required: Beginner, Intermediate, Advanced)
 7. **Lesson Type** (required):
-   - 4-Week Private ($840)
+   - 4-Week Private ($640)
    - 4-Week Small Group ($440/ea)
-   - One-Time Private (180)
+   - One-Time Private ($180)
    - One-Time Small Group ($120/ea)
 8. **Preferred Day** (required: Saturday, Sunday, Any)
 9. **Questions/Preferences** (optional)
