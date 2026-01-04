@@ -169,7 +169,7 @@ export default function SkiLessonsProgramPage() {
                     <strong>Location:</strong> Summit at Snoqualmie
                   </li>
                   <li>
-                    <strong>Format:</strong> Private (1-on-1) or Small Group (2-3 kids)
+                    <strong>Format:</strong> Private (1-on-1) or Small Group (4 kids max/class)
                   </li>
                   <li>
                     <strong>Pricing:</strong> Private $840 | Small Group $440/ea

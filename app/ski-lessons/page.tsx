@@ -379,7 +379,7 @@ export default function SkiLessonsPage() {
                   <option value="">Select lesson type</option>
                   <optgroup label="4-Week Progression Program">
                     <option value="4-week-private">Private (1-on-1) - $840</option>
-                    <option value="4-week-group">Small Group - $440 /ea kid (2-3 kids)</option>
+                    <option value="4-week-group">Small Group - $440 /ea kid (4 kids max/class)</option>
                   </optgroup>
                   <optgroup label="One-Time Lessons">
                     <option value="one-time-private">Private (1-on-1) - $180</option>
