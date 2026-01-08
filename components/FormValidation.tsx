@@ -129,8 +129,8 @@ export function validateSkiLessonForm(formData: {
     const ageNum = parseInt(formData.age)
     if (isNaN(ageNum) || ageNum < 1 || ageNum > 100) {
       errors.age = 'Please enter a valid age (1-100)'
-    } else if (ageNum < 6 || ageNum > 15) {
-      errors.age = 'Age must be between 6 and 15'
+    } else if (ageNum < 6 ) {
+      errors.age = 'Age must more than 6'
     }
   }
 
