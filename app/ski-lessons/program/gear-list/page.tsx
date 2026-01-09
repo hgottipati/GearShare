@@ -38,7 +38,7 @@ interface GearItem {
 const gearItems: GearItem[] = [
   // Clothing - Must Purchase
   { id: 'base-top', name: 'Long-sleeve thermal top', category: 'clothing', required: true, canRent: false, description: 'Synthetic or wool materials are better than cotton', tips: ['Fitted, moisture-wicking materials keep them dry', 'Avoid cotton - it retains moisture'] },
-  { id: 'base-bottom', name: 'Thermal leggings or long underwear', category: 'clothing', required: true, canRent: false, description: 'Avoid cotton - it gets wet and cold', tips: ['Base layer should be fitted, not loose'] },
+  { id: 'base-bottom', name: 'Thermal leggings or long underwear', category: 'clothing', required: false, canRent: false, description: 'Avoid cotton - it gets wet and cold', tips: ['Base layer should be fitted, not loose'] },
   { id: 'fleece', name: 'Fleece sweater or mid-layer', category: 'clothing', required: false, canRent: false, description: 'For extra warmth - insulation is key', tips: ['Fleece is a great, lightweight option', 'Perfect for layering'] },
   { id: 'ski-jacket', name: 'Insulated ski jacket', category: 'clothing', required: true, canRent: false, description: 'Waterproof and windproof recommended', tips: ['Look for breathable materials', 'Ensure proper fit for layering'] },
   { id: 'ski-pants', name: 'Ski pants or bibs', category: 'clothing', required: true, canRent: false, description: 'Waterproof and windproof to shield against the elements', tips: ['Bibs are great for keeping snow out', 'Look for adjustable waistbands for growing kids'] },
