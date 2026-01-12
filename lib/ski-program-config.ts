@@ -10,6 +10,7 @@
 export const skiProgramConfig = {
   session1: {
     startDate: '2026-01-24', // January 24, 2026 (Saturday)
+    enrollmentDeadline: '2026-01-11', // January 11, 2026 - Last day to enroll
     name: 'Session 1',
     classDates: [
       '2026-01-24', // 1st class: Saturday, January 24, 2026
@@ -20,6 +21,7 @@ export const skiProgramConfig = {
   },
   session2: {
     startDate: null as string | null, // Set date when scheduled, e.g., '2026-02-15'
+    enrollmentDeadline: null as string | null, // Set deadline when session is scheduled
     name: 'Session 2',
     classDates: [] as string[], // Will be populated when session is scheduled
   },

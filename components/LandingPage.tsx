@@ -100,13 +100,17 @@ export default function LandingPage() {
             >
               <Calendar className="w-5 h-5 flex-shrink-0" />
               <span className="font-semibold">
-                {nextSession.name} starting {formatSessionDate(nextSession.startDate)} • Enroll Now →
+                {nextSession.name} starting {formatSessionDate(nextSession.startDate)}
+                {nextSession.enrollmentDeadline && ` • Last day to enroll: ${formatSessionDate(nextSession.enrollmentDeadline)}`}
+                {' • Enroll Now →'}
               </span>
               <ArrowRight className="w-4 h-4 flex-shrink-0" />
               {/* Duplicate for seamless loop */}
               <Calendar className="w-5 h-5 flex-shrink-0 ml-8" />
               <span className="font-semibold">
-                {nextSession.name} starting {formatSessionDate(nextSession.startDate)} • Enroll Now →
+                {nextSession.name} starting {formatSessionDate(nextSession.startDate)}
+                {nextSession.enrollmentDeadline && ` • Last day to enroll: ${formatSessionDate(nextSession.enrollmentDeadline)}`}
+                {' • Enroll Now →'}
               </span>
               <ArrowRight className="w-4 h-4 flex-shrink-0" />
             </Link>
