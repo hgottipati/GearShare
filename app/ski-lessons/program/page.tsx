@@ -544,16 +544,19 @@ export default function SkiLessonsProgramPage() {
 
           {/* CTA Section */}
           <div className="mt-12 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg shadow-lg p-8 text-center text-white">
+            <div className="bg-white/10 rounded-lg px-4 py-2 mb-4 inline-block">
+              <p className="text-sm font-semibold">⚠️ Enrollment Currently Closed</p>
+            </div>
             <h2 className="text-2xl font-bold mb-4">Ready to Start Your Ski Journey?</h2>
             <p className="text-orange-100 mb-6 text-lg">
-              Join our 4-week progression program and build your skills with personalized
-              instruction.
+              Enrollment is currently closed, but you can join our waitlist. If spots become available, 
+              we&apos;ll contact you to join our 4-week progression program.
             </p>
             <Link
               href="/ski-lessons"
               className="inline-flex items-center px-8 py-3 bg-white text-orange-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
             >
-              Enroll Now
+              Join Waitlist
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </div>

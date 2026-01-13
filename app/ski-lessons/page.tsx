@@ -75,7 +75,7 @@ export default function SkiLessonsPage() {
         data
       )
 
-      toast.success('Thank you! Your submission has been received.')
+      toast.success('Thank you! You\'ve been added to the waitlist.')
       setSubmitted(true)
       setFormData({
         email: '',
@@ -120,11 +120,12 @@ export default function SkiLessonsPage() {
                   </svg>
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                  Thank You for Your Interest! 🎿
+                  Thank You for Joining the Waitlist! 🎿
                 </h2>
                 <p className="text-gray-600">
-                  Your enrollment form has been submitted successfully. I&apos;ll review your
-                  information and get back to you soon to discuss lesson options and scheduling.
+                  Your waitlist submission has been received successfully. Since enrollment is currently closed, 
+                  you&apos;ve been added to our waitlist. If spots become available, I&apos;ll contact you in the 
+                  order submissions were received to discuss lesson options and scheduling.
                 </p>
               </div>
               <button
@@ -151,6 +152,15 @@ export default function SkiLessonsPage() {
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
               Ski Interest Form 2025/26
             </h1>
+            <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-6 text-left">
+              <p className="text-orange-800 font-semibold mb-2">
+                ⚠️ Enrollment Currently Closed
+              </p>
+              <p className="text-gray-700 mb-3">
+                Regular enrollment for Session 1 is currently closed. However, you can still submit this form to join our waitlist. 
+                If spots become available, we&apos;ll contact you in the order submissions were received.
+              </p>
+            </div>
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 text-left">
               <p className="text-gray-700 mb-3">
                 Welcome! I offer personalized ski lessons for kids (ages 6–15) at Summit at
@@ -477,7 +487,7 @@ export default function SkiLessonsPage() {
                   disabled={loading}
                   className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed font-medium transition-colors"
                 >
-                  {loading ? 'Submitting...' : 'Submit'}
+                  {loading ? 'Submitting...' : 'Join Waitlist'}
                 </button>
               </div>
             </div>

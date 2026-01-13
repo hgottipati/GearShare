@@ -102,7 +102,7 @@ export default function LandingPage() {
               <span className="font-semibold">
                 {nextSession.name} starting {formatSessionDate(nextSession.startDate)}
                 {nextSession.enrollmentDeadline && ` • Last day to enroll: ${formatSessionDate(nextSession.enrollmentDeadline)}`}
-                {' • Enroll Now →'}
+                {' • Enrollment Currently Closed - Join Waitlist →'}
               </span>
               <ArrowRight className="w-4 h-4 flex-shrink-0" />
               {/* Duplicate for seamless loop */}
@@ -110,7 +110,7 @@ export default function LandingPage() {
               <span className="font-semibold">
                 {nextSession.name} starting {formatSessionDate(nextSession.startDate)}
                 {nextSession.enrollmentDeadline && ` • Last day to enroll: ${formatSessionDate(nextSession.enrollmentDeadline)}`}
-                {' • Enroll Now →'}
+                {' • Enrollment Currently Closed - Join Waitlist →'}
               </span>
               <ArrowRight className="w-4 h-4 flex-shrink-0" />
             </Link>
@@ -151,13 +151,20 @@ export default function LandingPage() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link
-                href="/ski-lessons"
-                className="group px-8 py-3.5 bg-blue-700 text-white rounded-lg font-semibold text-base hover:bg-blue-800 transition-colors flex items-center justify-center gap-2 shadow-sm"
-              >
-                Enroll Now
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              <div className="flex flex-col items-center gap-3">
+                <div className="bg-orange-50 border border-orange-200 rounded-lg px-4 py-2 mb-2">
+                  <p className="text-sm font-medium text-orange-800">
+                    ⚠️ Enrollment Currently Closed - Join Waitlist
+                  </p>
+                </div>
+                <Link
+                  href="/ski-lessons"
+                  className="group px-8 py-3.5 bg-blue-700 text-white rounded-lg font-semibold text-base hover:bg-blue-800 transition-colors flex items-center justify-center gap-2 shadow-sm"
+                >
+                  Join Waitlist
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
               <Link
                 href="/ski-lessons/program"
                 className="px-8 py-3.5 bg-white text-gray-700 rounded-lg font-semibold text-base border border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors"
@@ -415,7 +422,7 @@ export default function LandingPage() {
               href="/ski-lessons"
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-blue-700 rounded-lg font-semibold text-base hover:bg-gray-50 transition-colors"
             >
-              Enroll Now
+              Join Waitlist
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
