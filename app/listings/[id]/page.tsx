@@ -206,7 +206,7 @@ export default function ListingDetailPage() {
                     <div className="text-sm text-gray-500 mb-1 font-medium uppercase tracking-wide">Rent</div>
                     <div className="text-3xl font-bold text-indigo-600">
                       ${(listing as any).rent_price}
-                      <span className="text-base font-normal text-gray-500">/day</span>
+                      <span className="text-base font-normal text-gray-500">/season</span>
                     </div>
                   </div>
                 )}

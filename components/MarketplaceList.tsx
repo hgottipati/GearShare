@@ -368,13 +368,13 @@ export default function MarketplaceList() {
                 ? listing.location.split(',')[0].trim()
                 : null
               const isNew = isNewContent(listing.created_at, 24)
-              const hasStatus = listing.status && listing.status !== 'Available'
+              const status = listing.status && listing.status !== 'Available' ? listing.status : null
               
               // Calculate city badge position based on what badges are above it
               let cityTopClass = 'top-3'
-              if (isNew && hasStatus) {
+              if (isNew && status) {
                 cityTopClass = 'top-20' // NEW + Status badges above
-              } else if (isNew || hasStatus) {
+              } else if (isNew || status) {
                 cityTopClass = 'top-12' // One badge above
               }
               
@@ -403,9 +403,9 @@ export default function MarketplaceList() {
                         NEW
                       </div>
                     )}
-                    {hasStatus && (
-                      <div className={`absolute ${isNew ? 'top-12' : 'top-3'} left-3 ${listing.status === 'Sold' ? 'bg-green-600' : 'bg-blue-600'} text-white px-2.5 py-1 rounded-md text-xs font-bold shadow-sm z-10`}>
-                        {listing.status.toUpperCase()}
+                    {status && (
+                      <div className={`absolute ${isNew ? 'top-12' : 'top-3'} left-3 ${status === 'Sold' ? 'bg-green-600' : 'bg-blue-600'} text-white px-2.5 py-1 rounded-md text-xs font-bold shadow-sm z-10`}>
+                        {status.toUpperCase()}
                       </div>
                     )}
                     {city && (
@@ -456,7 +456,7 @@ export default function MarketplaceList() {
                         )}
                         {listing.rent_available && listing.rent_price && (
                           <span className="text-indigo-600 font-semibold text-sm">
-                            ${listing.rent_price}/day
+                            ${listing.rent_price}/season
                           </span>
                         )}
                       </div>
