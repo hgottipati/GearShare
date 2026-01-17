@@ -68,3 +68,4 @@ CREATE POLICY "Admins can delete ski lesson submissions"
 ALTER TABLE ski_lesson_submissions 
   ADD COLUMN status boolean default true;
  
+

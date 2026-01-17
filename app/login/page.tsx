@@ -48,6 +48,7 @@ function LoginForm() {
             data: {
               name,
             },
+            emailRedirectTo: `${window.location.origin}/marketplace`,
           },
         })
 
@@ -59,6 +60,14 @@ function LoginForm() {
             .from('profiles')
             .update({ phone })
             .eq('id', data.user.id)
+        }
+
+        // If user is created and has a session, auto-login and redirect
+        if (data.user && data.session) {
+          // Wait for session to be established
+          await new Promise(resolve => setTimeout(resolve, 300))
+          window.location.href = '/marketplace'
+          return
         }
 
         setMessage(
@@ -81,27 +90,6 @@ function LoginForm() {
 
         if (signInError) {
           console.error('Sign in error:', signInError)
-          // If email not confirmed, check if user is admin or approved
-          if (signInError.message.includes('email_not_confirmed') || signInError.message.includes('Email not confirmed')) {
-            // Try to get user by email to check their profile
-            const { data: profileData } = await supabase
-              .from('profiles')
-              .select('is_admin, is_approved')
-              .eq('email', email)
-              .single()
-
-            // If user is admin or approved, allow them to proceed
-            if (profileData && (profileData.is_admin || profileData.is_approved)) {
-              // Try to sign in again with email confirmation bypass
-              // Note: This requires the email to be confirmed in Supabase auth
-              // For now, we'll show a helpful message
-              setError(
-                'Email confirmation required. Please contact an administrator to confirm your email, or check your inbox for the confirmation link.'
-              )
-              setLoading(false)
-              return
-            }
-          }
           throw signInError
         }
 
@@ -141,7 +129,7 @@ function LoginForm() {
                   await new Promise(resolve => setTimeout(resolve, 200))
                   
                   // Use window.location for a full page reload to ensure session is picked up
-                  window.location.href = '/'
+                  window.location.href = '/marketplace'
                   return // Exit the function, don't continue
                 }
               } catch (userError) {
@@ -166,7 +154,7 @@ function LoginForm() {
           if (session) {
             console.log('Session found in fallback check, redirecting...')
             setDebugInfo('Session found in fallback, redirecting...')
-            window.location.href = '/'
+            window.location.href = '/marketplace'
             // Don't set loading to false since we're redirecting
           } else {
             console.error('No session found after login')

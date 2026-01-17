@@ -21,7 +21,7 @@ export default async function Home() {
     )
   }
 
-  // Redirect authenticated users to ski lessons (primary focus)
-  redirect('/ski-lessons')
+  // Redirect authenticated users to marketplace (gear share exchange)
+  redirect('/marketplace')
 }
 
