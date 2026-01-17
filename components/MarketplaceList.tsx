@@ -22,6 +22,7 @@ interface Listing {
   open_to_trade: boolean
   rent_available: boolean
   rent_price: number | null
+  status: string | null
   created_at: string
   listing_images: { image_url: string }[]
   profiles: { name: string | null }
@@ -83,6 +84,7 @@ export default function MarketplaceList() {
         open_to_trade,
         rent_available,
         rent_price,
+        status,
         created_at,
         listing_images(image_url),
         profiles(name)
@@ -366,6 +368,15 @@ export default function MarketplaceList() {
                 ? listing.location.split(',')[0].trim()
                 : null
               const isNew = isNewContent(listing.created_at, 24)
+              const hasStatus = listing.status && listing.status !== 'Available'
+              
+              // Calculate city badge position based on what badges are above it
+              let cityTopClass = 'top-3'
+              if (isNew && hasStatus) {
+                cityTopClass = 'top-20' // NEW + Status badges above
+              } else if (isNew || hasStatus) {
+                cityTopClass = 'top-12' // One badge above
+              }
               
               return (
                 <Link
@@ -392,8 +403,13 @@ export default function MarketplaceList() {
                         NEW
                       </div>
                     )}
+                    {hasStatus && (
+                      <div className={`absolute ${isNew ? 'top-12' : 'top-3'} left-3 ${listing.status === 'Sold' ? 'bg-green-600' : 'bg-blue-600'} text-white px-2.5 py-1 rounded-md text-xs font-bold shadow-sm z-10`}>
+                        {listing.status.toUpperCase()}
+                      </div>
+                    )}
                     {city && (
-                      <div className={`absolute ${isNew ? 'top-12' : 'top-3'} left-3 bg-white/95 backdrop-blur-sm text-gray-800 px-2.5 py-1 rounded-md text-xs font-semibold shadow-sm`}>
+                      <div className={`absolute ${cityTopClass} left-3 bg-white/95 backdrop-blur-sm text-gray-800 px-2.5 py-1 rounded-md text-xs font-semibold shadow-sm`}>
                         📍 {city}
                       </div>
                     )}
