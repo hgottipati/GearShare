@@ -75,7 +75,7 @@ function NotificationsPageContent() {
       toast.error('Error loading notifications')
     } else {
       setNotifications(data || [])
-      const unread = (data || []).filter((n) => !n.read).length
+      const unread = (data || []).filter((n: Notification) => !n.read).length
       setUnreadCount(unread)
     }
     setLoading(false)
@@ -191,7 +191,7 @@ function NotificationsPageContent() {
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
             <Bell className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <h2 className="text-xl font-semibold text-gray-900 mb-2">No notifications</h2>
-            <p className="text-gray-600">You're all caught up! Check back later for updates.</p>
+            <p className="text-gray-600">You&apos;re all caught up! Check back later for updates.</p>
           </div>
         ) : (
           <div className="space-y-3">

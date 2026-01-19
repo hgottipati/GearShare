@@ -34,7 +34,21 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 5. Initial Admin Setup
+### 5. Build for Production (Local Testing)
+
+To build and test the production version locally:
+
+```bash
+# Build the production bundle
+npm run build
+
+# Start the production server
+npm start
+```
+
+This will create an optimized production build and run it on `http://localhost:3000`.
+
+### 6. Initial Admin Setup
 
 After creating your first user account, you'll need to manually set yourself as admin in Supabase:
 
