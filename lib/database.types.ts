@@ -219,6 +219,84 @@ export interface Database {
           updated_at?: string
         }
       }
+      favorites: {
+        Row: {
+          id: string
+          user_id: string
+          listing_id: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          listing_id: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          listing_id?: string
+          created_at?: string
+        }
+      }
+      notification_settings: {
+        Row: {
+          user_id: string
+          notify_messages: boolean
+          notify_new_listings: boolean
+          notify_favorite_sold: boolean
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          user_id: string
+          notify_messages?: boolean
+          notify_new_listings?: boolean
+          notify_favorite_sold?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          user_id?: string
+          notify_messages?: boolean
+          notify_new_listings?: boolean
+          notify_favorite_sold?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      notifications: {
+        Row: {
+          id: string
+          user_id: string
+          type: 'message' | 'new_listing' | 'favorite_sold'
+          title: string
+          message: string
+          link: string | null
+          read: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          type: 'message' | 'new_listing' | 'favorite_sold'
+          title: string
+          message: string
+          link?: string | null
+          read?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          type?: 'message' | 'new_listing' | 'favorite_sold'
+          title?: string
+          message?: string
+          link?: string | null
+          read?: boolean
+          created_at?: string
+        }
+      }
     }
   }
 }

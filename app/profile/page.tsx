@@ -34,6 +34,11 @@ function ProfilePageContent() {
   const [profile, setProfile] = useState<Profile | null>(null)
   const [listings, setListings] = useState<Listing[]>([])
   const [loading, setLoading] = useState(true)
+  const [notificationSettings, setNotificationSettings] = useState({
+    notify_messages: true,
+    notify_new_listings: true,
+    notify_favorite_sold: true,
+  })
 
   useEffect(() => {
     if (user) {
@@ -75,6 +80,22 @@ function ProfilePageContent() {
       .order('created_at', { ascending: false })
 
     setListings(listingsData || [])
+
+    // Load notification settings
+    const { data: settingsData } = await supabase
+      .from('notification_settings')
+      .select('notify_messages, notify_new_listings, notify_favorite_sold')
+      .eq('user_id', user.id)
+      .single()
+
+    if (settingsData) {
+      setNotificationSettings({
+        notify_messages: settingsData.notify_messages ?? true,
+        notify_new_listings: settingsData.notify_new_listings ?? true,
+        notify_favorite_sold: settingsData.notify_favorite_sold ?? true,
+      })
+    }
+
     setLoading(false)
   }
 
@@ -97,6 +118,25 @@ function ProfilePageContent() {
     } else {
       loadData()
       toast.success('Profile updated!')
+    }
+  }
+
+  const updateNotificationSettings = async () => {
+    if (!user) return
+
+    const { error } = await supabase
+      .from('notification_settings')
+      .upsert({
+        user_id: user.id,
+        notify_messages: notificationSettings.notify_messages,
+        notify_new_listings: notificationSettings.notify_new_listings,
+        notify_favorite_sold: notificationSettings.notify_favorite_sold,
+      })
+
+    if (error) {
+      toast.error('Error updating notification settings')
+    } else {
+      toast.success('Notification settings updated!')
     }
   }
 
@@ -173,6 +213,93 @@ function ProfilePageContent() {
               Update Profile
             </button>
           </form>
+        </div>
+
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 mb-6">
+          <h2 className="text-xl font-semibold mb-6 text-gray-900">Notification Settings</h2>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="text-sm font-medium text-gray-900">
+                  New Messages
+                </label>
+                <p className="text-sm text-gray-500">
+                  Get notified when someone sends you a message
+                </p>
+              </div>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={notificationSettings.notify_messages}
+                  onChange={(e) =>
+                    setNotificationSettings({
+                      ...notificationSettings,
+                      notify_messages: e.target.checked,
+                    })
+                  }
+                  className="sr-only peer"
+                />
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+              </label>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="text-sm font-medium text-gray-900">
+                  New Listings
+                </label>
+                <p className="text-sm text-gray-500">
+                  Get notified when new listings are added to the marketplace
+                </p>
+              </div>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={notificationSettings.notify_new_listings}
+                  onChange={(e) =>
+                    setNotificationSettings({
+                      ...notificationSettings,
+                      notify_new_listings: e.target.checked,
+                    })
+                  }
+                  className="sr-only peer"
+                />
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+              </label>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="text-sm font-medium text-gray-900">
+                  Favorite Listings Sold
+                </label>
+                <p className="text-sm text-gray-500">
+                  Get notified when a listing you favorited is marked as sold
+                </p>
+              </div>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={notificationSettings.notify_favorite_sold}
+                  onChange={(e) =>
+                    setNotificationSettings({
+                      ...notificationSettings,
+                      notify_favorite_sold: e.target.checked,
+                    })
+                  }
+                  className="sr-only peer"
+                />
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+              </label>
+            </div>
+
+            <button
+              onClick={updateNotificationSettings}
+              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+            >
+              Save Notification Settings
+            </button>
+          </div>
         </div>
 
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">

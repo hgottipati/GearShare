@@ -9,6 +9,7 @@ import MessageSeller from '@/components/MessageSeller'
 import ImageGallery from '@/components/ImageGallery'
 import toast from 'react-hot-toast'
 import Link from 'next/link'
+import { Heart } from 'lucide-react'
 
 interface Listing {
   id: string
@@ -43,12 +44,16 @@ export default function ListingDetailPage() {
   const [listing, setListing] = useState<Listing | null>(null)
   const [loading, setLoading] = useState(true)
   const [showMessageForm, setShowMessageForm] = useState(false)
+  const [isFavorited, setIsFavorited] = useState(false)
 
   useEffect(() => {
     if (params.id) {
       loadListing()
+      if (user) {
+        checkFavorite()
+      }
     }
-  }, [params.id])
+  }, [params.id, user])
 
   const loadListing = async () => {
     const { data, error } = await supabase
@@ -74,6 +79,59 @@ export default function ListingDetailPage() {
       setListing(data)
     }
     setLoading(false)
+  }
+
+  const checkFavorite = async () => {
+    if (!user || !params.id) return
+
+    const { data } = await supabase
+      .from('favorites')
+      .select('id')
+      .eq('user_id', user.id)
+      .eq('listing_id', params.id)
+      .single()
+
+    setIsFavorited(!!data)
+  }
+
+  const toggleFavorite = async () => {
+    if (!user) {
+      toast.error('Please log in to favorite listings')
+      return
+    }
+
+    if (!listing) return
+
+    if (isFavorited) {
+      // Remove from favorites
+      const { error } = await supabase
+        .from('favorites')
+        .delete()
+        .eq('user_id', user.id)
+        .eq('listing_id', listing.id)
+
+      if (error) {
+        toast.error('Error removing favorite')
+      } else {
+        setIsFavorited(false)
+        toast.success('Removed from favorites')
+      }
+    } else {
+      // Add to favorites
+      const { error } = await supabase
+        .from('favorites')
+        .insert({
+          user_id: user.id,
+          listing_id: listing.id,
+        })
+
+      if (error) {
+        toast.error('Error adding favorite')
+      } else {
+        setIsFavorited(true)
+        toast.success('Added to favorites')
+      }
+    }
   }
 
   const handleDelete = async () => {
@@ -245,6 +303,19 @@ export default function ListingDetailPage() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
+              {!isOwner && user && (
+                <button
+                  onClick={toggleFavorite}
+                  className={`px-6 py-2.5 rounded-lg font-semibold transition-colors shadow-sm flex items-center gap-2 ${
+                    isFavorited
+                      ? 'bg-red-600 text-white hover:bg-red-700'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
+                >
+                  <Heart className={`w-5 h-5 ${isFavorited ? 'fill-current' : ''}`} />
+                  {isFavorited ? 'Favorited' : 'Favorite'}
+                </button>
+              )}
               {isOwner ? (
                 <>
                   <Link

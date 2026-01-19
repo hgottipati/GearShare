@@ -5,7 +5,7 @@ import { useAuth } from '@/app/providers'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase-client'
 import { useState, useEffect } from 'react'
-import { Menu, X, MessageSquare } from 'lucide-react'
+import { Menu, X, MessageSquare, Bell } from 'lucide-react'
 import Logo from './Logo'
 
 export default function Navbar() {
@@ -15,6 +15,7 @@ export default function Navbar() {
   const [isAdmin, setIsAdmin] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [unreadCount, setUnreadCount] = useState(0)
+  const [unreadNotificationCount, setUnreadNotificationCount] = useState(0)
 
   useEffect(() => {
     if (user) {
@@ -37,8 +38,18 @@ export default function Navbar() {
           setUnreadCount(count || 0)
         })
 
+      // Load unread notification count
+      supabase
+        .from('notifications')
+        .select('id', { count: 'exact', head: true })
+        .eq('user_id', user.id)
+        .eq('read', false)
+        .then(({ count }: { count: number | null }) => {
+          setUnreadNotificationCount(count || 0)
+        })
+
       // Set up real-time subscription for new messages
-      const channel = supabase
+      const messagesChannel = supabase
         .channel('messages')
         .on(
           'postgres_changes',
@@ -62,8 +73,34 @@ export default function Navbar() {
         )
         .subscribe()
 
+      // Set up real-time subscription for new notifications
+      const notificationsChannel = supabase
+        .channel('notifications-navbar')
+        .on(
+          'postgres_changes',
+          {
+            event: '*',
+            schema: 'public',
+            table: 'notifications',
+            filter: `user_id=eq.${user.id}`,
+          },
+          () => {
+            // Refresh count when notifications change
+            supabase
+              .from('notifications')
+              .select('id', { count: 'exact', head: true })
+              .eq('user_id', user.id)
+              .eq('read', false)
+              .then(({ count }: { count: number | null }) => {
+                setUnreadNotificationCount(count || 0)
+              })
+          }
+        )
+        .subscribe()
+
       return () => {
-        supabase.removeChannel(channel)
+        supabase.removeChannel(messagesChannel)
+        supabase.removeChannel(notificationsChannel)
       }
     }
   }, [user, supabase])
@@ -100,6 +137,18 @@ export default function Navbar() {
                 className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
               >
                 Create Listing
+              </Link>
+              <Link
+                href="/notifications"
+                className="relative text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2"
+              >
+                <Bell size={18} />
+                Notifications
+                {unreadNotificationCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {unreadNotificationCount > 9 ? '9+' : unreadNotificationCount}
+                  </span>
+                )}
               </Link>
               <Link
                 href="/messages"
@@ -174,6 +223,19 @@ export default function Navbar() {
                 className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md text-sm font-medium"
               >
                 Create Listing
+              </Link>
+              <Link
+                href="/notifications"
+                onClick={() => setMobileMenuOpen(false)}
+                className="relative block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md text-sm font-medium flex items-center gap-2"
+              >
+                <Bell size={18} />
+                Notifications
+                {unreadNotificationCount > 0 && (
+                  <span className="bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {unreadNotificationCount > 9 ? '9+' : unreadNotificationCount}
+                  </span>
+                )}
               </Link>
               <Link
                 href="/messages"
