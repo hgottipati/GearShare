@@ -54,7 +54,16 @@ export default function MessageSeller({
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ type: 'message', messageId: inserted.id }),
-        }).catch(console.error)
+        })
+          .then(async (res) => {
+            if (!res.ok) {
+              const error = await res.json().catch(() => ({ error: 'Unknown error' }))
+              console.error('Email notification failed:', error)
+            }
+          })
+          .catch((err) => {
+            console.error('Email notification error:', err)
+          })
       }
       
       onSent()

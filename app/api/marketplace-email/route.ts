@@ -38,15 +38,22 @@ function getResend() {
 }
 
 async function sendEmail(to: string, subject: string, html: string, text?: string) {
-  const from = getRequiredEnv('RESEND_FROM_EMAIL')
-  const resend = getResend()
-  await resend.emails.send({
-    from,
-    to,
-    subject,
-    html,
-    text,
-  })
+  try {
+    const from = getRequiredEnv('RESEND_FROM_EMAIL')
+    const resend = getResend()
+    const result = await resend.emails.send({
+      from,
+      to,
+      subject,
+      html,
+      text,
+    })
+    console.log('[marketplace-email] Email sent:', { to, subject, result })
+    return result
+  } catch (err: any) {
+    console.error('[marketplace-email] Email send failed:', err)
+    throw err
+  }
 }
 
 export async function POST(req: Request) {
@@ -55,6 +62,7 @@ export async function POST(req: Request) {
     const userId = await getAuthedUserId()
 
     if (!userId) {
+      console.error('[marketplace-email] Unauthorized: No user ID')
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -204,6 +212,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
   } catch (err: any) {
     const message = err?.message || 'Unknown error'
+    console.error('[marketplace-email] Error:', message, err)
     return NextResponse.json({ error: message }, { status: 500 })
   }
 }
