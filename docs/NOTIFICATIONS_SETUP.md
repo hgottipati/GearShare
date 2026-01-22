@@ -81,6 +81,38 @@ The system uses database triggers to automatically create notifications:
 - Notifications page updates in real-time when new notifications arrive
 - Uses Supabase real-time subscriptions for instant updates
 
+## Email Notifications (Resend)
+
+In addition to in-app notifications, the app can send **emails** for marketplace events using [Resend](https://resend.com).
+
+### 1. Create a Resend API key
+
+- In Resend, create an API key and verify a domain (recommended), or use their sandbox/testing setup.
+
+### 2. Add environment variables
+
+Add these to `.env.local` (and to Vercel env vars in production):
+
+```
+RESEND_API_KEY=your_resend_api_key
+RESEND_FROM_EMAIL="GearShare <noreply@yourdomain.com>"
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+```
+
+- `RESEND_FROM_EMAIL` must be a sender you’ve verified in Resend.
+- `SUPABASE_SERVICE_ROLE_KEY` is required so the server can email all eligible users for “new listing” and “favorite sold” events.
+
+### 3. How emails are triggered
+
+The app calls a server route (`POST /api/marketplace-email`) after:
+
+- A message is sent
+- A new listing is created
+- A listing is marked as sold
+
+This route respects each user’s notification settings.
+
 ## Default Settings
 
 When a user's profile is created, default notification settings are:
@@ -114,7 +146,6 @@ Users can change these settings at any time from their profile page.
 ## Future Enhancements
 
 Potential improvements:
-- Email notifications (in addition to in-app notifications)
 - Push notifications for mobile
 - Notification grouping
 - Notification history/archiving

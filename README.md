@@ -18,6 +18,12 @@ Create a `.env.local` file in the root directory:
 ```
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+# Optional: Email notifications (Resend)
+RESEND_API_KEY=your_resend_api_key
+RESEND_FROM_EMAIL="GearShare <noreply@yourdomain.com>"
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 ```
 
 ### 3. Install Dependencies
@@ -77,7 +83,10 @@ The easiest way to deploy ShareMyGear is using [Vercel](https://vercel.com):
 3. Add environment variables:
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `NEXT_PUBLIC_APP_URL` (optional, for email notifications)
+   - `NEXT_PUBLIC_APP_URL` (your Vercel URL)
+   - `RESEND_API_KEY` (for email notifications)
+   - `RESEND_FROM_EMAIL` (for email notifications)
+   - `SUPABASE_SERVICE_ROLE_KEY` (for email notifications)
 4. Deploy!
 
 See [docs/VERCEL_DEPLOYMENT.md](./docs/VERCEL_DEPLOYMENT.md) for detailed deployment instructions.

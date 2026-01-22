@@ -122,6 +122,15 @@ export default function CreateListingPage() {
         await uploadImages(listing.id)
       }
 
+      // Send email notifications for new listing (non-blocking, server-side via API route)
+      if (listing?.id) {
+        fetch('/api/marketplace-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'new_listing', listingId: listing.id }),
+        }).catch(console.error)
+      }
+
       toast.success('Listing created!')
       router.push(`/listings/${listing.id}`)
     } catch (err: any) {

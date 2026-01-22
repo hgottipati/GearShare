@@ -346,6 +346,12 @@ export default function ListingDetailPage() {
                                 }
                               } else {
                                 toast.success('Listing marked as Sold')
+                                // Email users who favorited this listing (non-blocking, server-side via API route)
+                                fetch('/api/marketplace-email', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ type: 'favorite_sold', listingId: listing.id }),
+                                }).catch(console.error)
                                 loadListing()
                               }
                             } catch (err) {

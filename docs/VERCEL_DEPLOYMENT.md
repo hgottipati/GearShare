@@ -35,7 +35,10 @@ In the Vercel project settings, add these environment variables:
 - `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Your Supabase anon/public key
 
-**Optional (for email notifications):**
+**Required for Email Notifications:**
+- `RESEND_API_KEY` - Your Resend API key (get from [resend.com](https://resend.com))
+- `RESEND_FROM_EMAIL` - Sender email (use `onboarding@resend.dev` for testing, or your verified domain for production)
+- `SUPABASE_SERVICE_ROLE_KEY` - Your Supabase service role key (from Supabase Dashboard → Settings → API)
 - `NEXT_PUBLIC_APP_URL` - Your Vercel deployment URL (e.g., `https://your-app.vercel.app`)
 
 **How to add environment variables:**
@@ -63,7 +66,9 @@ In the Vercel project settings, add these environment variables:
 - [ ] Test image uploads to Supabase Storage
 - [ ] Verify admin routes are protected
 - [ ] Test creating and viewing listings
-- [ ] Update `NEXT_PUBLIC_APP_URL` if you're using email notifications
+- [ ] Update `NEXT_PUBLIC_APP_URL` to your Vercel domain
+- [ ] Test email notifications (send a message, create a listing)
+- [ ] Verify Resend emails are being sent (check Resend dashboard)
 
 ## Changing Your Vercel Domain
 

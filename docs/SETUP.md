@@ -49,6 +49,14 @@ npm install
 ```
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+# Optional: Email notifications (Resend)
+# For testing: Use Resend's test domain (no verification needed)
+# For production: Verify your own domain in Resend dashboard
+RESEND_API_KEY=re_your_api_key_here
+RESEND_FROM_EMAIL=onboarding@resend.dev
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
 ```
 
 Replace `your_project_url_here` and `your_anon_key_here` with the values you copied.

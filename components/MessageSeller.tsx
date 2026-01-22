@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase-client'
 import toast from 'react-hot-toast'
-import { notifyNewMessage } from '@/lib/email-notifications'
 
 interface MessageSellerProps {
   listingId: string
@@ -36,18 +35,12 @@ export default function MessageSeller({
       return
     }
 
-    // Get receiver and listing info for email
-    const [receiverData, listingData] = await Promise.all([
-      supabase.from('profiles').select('email, name').eq('id', receiverId).single(),
-      supabase.from('listings').select('title').eq('id', listingId).single(),
-    ])
-
-    const { error } = await supabase.from('messages').insert({
+    const { data: inserted, error } = await supabase.from('messages').insert({
       listing_id: listingId,
       sender_id: user.id,
       receiver_id: receiverId,
       message: message.trim(),
-    })
+    }).select('id').single()
 
     if (error) {
       toast.error('Error sending message: ' + error.message)
@@ -55,20 +48,13 @@ export default function MessageSeller({
       setMessage('')
       toast.success('Message sent!')
       
-      // Send email notification (non-blocking)
-      if (receiverData.data && listingData.data) {
-        const senderProfile = await supabase
-          .from('profiles')
-          .select('name')
-          .eq('id', user.id)
-          .single()
-        
-        notifyNewMessage(
-          receiverData.data.email,
-          senderProfile.data?.name || 'Someone',
-          listingData.data.title,
-          message.trim()
-        ).catch(console.error)
+      // Send email notification (non-blocking, server-side via API route)
+      if (inserted?.id) {
+        fetch('/api/marketplace-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'message', messageId: inserted.id }),
+        }).catch(console.error)
       }
       
       onSent()
