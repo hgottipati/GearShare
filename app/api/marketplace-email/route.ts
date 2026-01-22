@@ -41,6 +41,22 @@ async function sendEmail(to: string, subject: string, html: string, text?: strin
   try {
     const from = getRequiredEnv('RESEND_FROM_EMAIL')
     const resend = getResend()
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(to)) {
+      console.error('[marketplace-email] Invalid email format:', to)
+      throw new Error(`Invalid email format: ${to}`)
+    }
+    
+    console.log('[marketplace-email] Attempting to send email:', { 
+      from, 
+      to, 
+      subject,
+      emailLength: to.length,
+      emailDomain: to.split('@')[1]
+    })
+    
     const result = await resend.emails.send({
       from,
       to,
@@ -48,10 +64,27 @@ async function sendEmail(to: string, subject: string, html: string, text?: strin
       html,
       text,
     })
-    console.log('[marketplace-email] Email sent:', { to, subject, result })
+    
+    console.log('[marketplace-email] Email sent successfully:', { 
+      to, 
+      subject, 
+      result,
+      emailId: 'data' in result ? result.data?.id : null,
+      error: 'error' in result ? result.error : null
+    })
+    
+    if ('error' in result && result.error) {
+      console.error('[marketplace-email] Resend returned error:', result.error)
+    }
+    
     return result
   } catch (err: any) {
-    console.error('[marketplace-email] Email send failed:', err)
+    console.error('[marketplace-email] Email send failed:', {
+      to,
+      error: err?.message,
+      errorDetails: err,
+      stack: err?.stack
+    })
     throw err
   }
 }
@@ -81,7 +114,7 @@ export async function POST(req: Request) {
 
       const [{ data: receiver }, { data: receiverSettings }, { data: listing }, { data: sender }] =
         await Promise.all([
-          supabase.from('profiles').select('email, name, is_approved').eq('id', msg.receiver_id).single(),
+          supabase.from('profiles').select('email, name, is_approved, phone').eq('id', msg.receiver_id).single(),
           supabase
             .from('notification_settings')
             .select('notify_messages')
@@ -92,9 +125,32 @@ export async function POST(req: Request) {
         ])
 
       const notifyMessages = receiverSettings?.notify_messages ?? true
-      if (!notifyMessages) return NextResponse.json({ ok: true, skipped: true })
-      if (!receiver?.email) throw new Error('Receiver email not found')
-      if (receiver.is_approved === false) return NextResponse.json({ ok: true, skipped: true })
+      if (!notifyMessages) {
+        console.log('[marketplace-email] Skipped: notify_messages is false for user', msg.receiver_id)
+        return NextResponse.json({ ok: true, skipped: true, reason: 'notify_messages_disabled' })
+      }
+      if (!receiver?.email) {
+        console.error('[marketplace-email] Skipped: No email found for receiver', {
+          receiver_id: msg.receiver_id,
+          receiver_data: receiver
+        })
+        throw new Error('Receiver email not found')
+      }
+      
+      // Log receiver details for debugging
+      console.log('[marketplace-email] Receiver details:', {
+        receiver_id: msg.receiver_id,
+        email: receiver.email,
+        emailLength: receiver.email?.length,
+        emailDomain: receiver.email?.split('@')[1],
+        name: receiver.name,
+        is_approved: receiver.is_approved,
+        hasPhone: !!receiver.phone
+      })
+      if (receiver.is_approved === false) {
+        console.log('[marketplace-email] Skipped: User not approved', { receiver_id: msg.receiver_id, email: receiver.email })
+        return NextResponse.json({ ok: true, skipped: true, reason: 'user_not_approved' })
+      }
 
       const senderName = sender?.name || 'Someone'
       const listingTitle = listing?.title || 'a listing'
@@ -109,8 +165,9 @@ export async function POST(req: Request) {
         <p><a href="${link}">View messages</a></p>
       `
       const text = `New message from ${senderName} about ${listingTitle}: ${msg.message}\n\nView: ${link}`
+      console.log('[marketplace-email] Sending email to:', receiver.email, { receiver_id: msg.receiver_id, is_approved: receiver.is_approved })
       await sendEmail(receiver.email, subject, html, text)
-      return NextResponse.json({ ok: true })
+      return NextResponse.json({ ok: true, sent: true, to: receiver.email })
     }
 
     if (body.type === 'new_listing') {
