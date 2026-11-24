@@ -2,25 +2,25 @@
  * Ski Program Session Dates Configuration
  * 
  * Update these dates whenever you need to change session start dates.
- * Format: YYYY-MM-DD (e.g., '2025-01-24')
+ * Format: YYYY-MM-DD (e.g., '2027-01-10')
  * 
  * Set to null if a session is not scheduled.
  */
 
 export const skiProgramConfig = {
   session1: {
-    startDate: '2026-01-24', // January 24, 2026 (Saturday)
-    enrollmentDeadline: '2026-01-11', // January 11, 2026 - Last day to enroll
+    startDate: '2027-01-10', // January 10, 2027
+    enrollmentDeadline: '2026-12-28', // December 28, 2026 - Last day to enroll
     name: 'Session 1',
     classDates: [
-      '2026-01-24', // 1st class: Saturday, January 24, 2026
-      '2026-01-31', // 2nd class: Saturday, January 31, 2026
-      '2026-02-07', // 3rd class: Saturday, February 07, 2026
-      '2026-02-14', // 4th class: Saturday, February 14, 2026
+      '2027-01-10', // 1st class: January 10, 2027
+      '2027-01-17', // 2nd class: January 17, 2027
+      '2027-01-24', // 3rd class: January 24, 2027
+      '2027-01-30', // 4th class: January 30, 2027
     ] as string[],
   },
   session2: {
-    startDate: null as string | null, // Set date when scheduled, e.g., '2026-02-15'
+    startDate: null as string | null, // Set date when scheduled, e.g., '2027-02-14'
     enrollmentDeadline: null as string | null, // Set deadline when session is scheduled
     name: 'Session 2',
     classDates: [] as string[], // Will be populated when session is scheduled
@@ -93,4 +93,3 @@ export function isSessionUpcoming(dateString: string | null): boolean {
   
   return sessionDate >= today
 }
-

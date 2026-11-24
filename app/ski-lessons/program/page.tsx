@@ -482,22 +482,17 @@ export default function SkiLessonsProgramPage() {
                       {/* Option 1 */}
                       <div className="bg-blue-50 rounded-lg p-5 border-l-4 border-blue-600 mt-4">
                         <h4 className="font-semibold text-gray-900 mb-2">Option 1: 4-Day Flex Pass (Minimum Required)</h4>
-                        <p className="text-sm text-gray-600 mb-3">Unrestricted · Summit areas only</p>
+                        <p className="text-sm text-gray-600 mb-3">Unrestricted · Summit areas only · 2026/27</p>
                         <Link
-                          href="https://shop.summitatsnoqualmie.com/l/lift-ticket/lift-tickets/p/winter-ticket-packs"
+                          href="https://www.summitatsnoqualmie.com/tickets/flex-ticket-packs"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-blue-600 hover:text-blue-700 text-sm font-medium mb-3 inline-block"
                         >
-                          🔗 Purchase 4-Day Flex Pass →
+                          🔗 Check current Flex Pass prices on Summit →
                         </Link>
-                        <ul className="list-disc list-inside space-y-1 text-sm ml-2">
-                          <li>Adult (13+): $335</li>
-                          <li>Youth (7–12): $250</li>
-                          <li>Child (0–6): $78</li>
-                        </ul>
                         <p className="text-sm text-gray-600 mt-3">
-                          This option works well if you only plan to ski during lesson days.
+                          This option works well if you only plan to ski during lesson days. Prices vary by age—confirm the latest rates on Summit&apos;s site before purchasing.
                         </p>
                       </div>
 
@@ -505,23 +500,15 @@ export default function SkiLessonsProgramPage() {
                       <div className="bg-indigo-50 rounded-lg p-5 border-l-4 border-indigo-600 mt-4">
                         <h4 className="font-semibold text-gray-900 mb-2">Option 2: Summit Season Pass (Best for Frequent Skiers)</h4>
                         <Link
-                          href="https://shop.summitatsnoqualmie.com/l/season-passes-26/core-passes/p/26-summit-passes"
+                          href="https://www.summitatsnoqualmie.com/season-passes/downhill-season-passes"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-indigo-600 hover:text-indigo-700 text-sm font-medium mb-3 inline-block"
                         >
-                          🔗 Purchase Season Pass →
+                          🔗 Check current Season Pass prices on Summit →
                         </Link>
-                        <p className="text-sm text-gray-600 mb-3">2025–26 prices (as of Jan 2026):</p>
-                        <ul className="list-disc list-inside space-y-1 text-sm ml-2">
-                          <li>Adult (26–61): $759</li>
-                          <li>Young Adult (19–25): $649</li>
-                          <li>Teen (13–18): $589</li>
-                          <li>Youth (7–12): $469</li>
-                          <li>Child (0–6): $155</li>
-                        </ul>
                         <p className="text-sm text-gray-600 mt-3">
-                          A season pass is ideal if your child (or family) plans to ski before or after lessons, on weekends, or throughout the winter.
+                          A season pass is ideal if your child (or family) plans to ski before or after lessons, on weekends, or throughout the winter. Compare 2026/27 pass options and current pricing directly on Summit&apos;s site.
                         </p>
                       </div>
 
@@ -543,20 +530,20 @@ export default function SkiLessonsProgramPage() {
           </div>
 
           {/* CTA Section */}
-          <div className="mt-12 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg shadow-lg p-8 text-center text-white">
+          <div className="mt-12 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-lg shadow-lg p-8 text-center text-white">
             <div className="bg-white/10 rounded-lg px-4 py-2 mb-4 inline-block">
-              <p className="text-sm font-semibold">⚠️ Enrollment Currently Closed</p>
+              <p className="text-sm font-semibold">✓ Enrollment Open for 2026/27</p>
             </div>
             <h2 className="text-2xl font-bold mb-4">Ready to Start Your Ski Journey?</h2>
-            <p className="text-orange-100 mb-6 text-lg">
-              Enrollment is currently closed, but you can join our waitlist. If spots become available, 
-              we&apos;ll contact you to join our 4-week progression program.
+            <p className="text-blue-100 mb-6 text-lg">
+              Session 1 runs January 10, 17, 24, and 30, 2027. Submit the enrollment form and
+              I&apos;ll follow up about our 4-week progression program.
             </p>
             <Link
               href="/ski-lessons"
-              className="inline-flex items-center px-8 py-3 bg-white text-orange-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
+              className="inline-flex items-center px-8 py-3 bg-white text-blue-700 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
             >
-              Join Waitlist
+              Enroll Now
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </div>
